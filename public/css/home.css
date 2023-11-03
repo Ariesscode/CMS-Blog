@@ -8,6 +8,18 @@
     --error: rgb(228, 46, 1);
     --border-radius: 0.3rem;
   }
+nav {
+    float: right;
+    
+}
+
+nav a {
+    padding:5px;
+    text-decoration: none;
+    color: var(--light);
+    font-size: 20px;
+
+}
 
 header {
     padding: 40px;
@@ -24,6 +36,10 @@ header {
     padding-left: 10px;
     padding-right: 10px;
 
+  }
+
+  .post-heading p {
+    color: pink;
   }
 
   .pre-post {
