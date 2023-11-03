@@ -10,7 +10,7 @@
   </header>
   <nav>
     <a href="/">Home</a>
-    <a href="/dashboard"></a>
+    <a href="/dashboard">Dashboard</a>
     <!-- If the user is logged in, show a logout button -->
     {{#if loggedIn}}
     <button id="logout" class="btn-no-style">Logout</button>
@@ -20,20 +20,12 @@
     {{/if}}
   </nav>
   <main>
-    <div class="pre-post">
-        <div class="post-heading">
-      <h2>Why MVC is so important</h2>
-      <p>Posted by Abby on 11/3/2023</p>
-      </div>
-      <div class="post-body">
-        <p>MVC allows developers to maintain a true seperation of concerns, devising their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.</p>
-      </div>
-    </div>
-    <div class="blog-post">
-      {{{body}}}
-    </div>
+    {{{ body }}}
   </main>
+  
   <!-- If the user is logged in, load the JS script for when they logout -->
+
+
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}
