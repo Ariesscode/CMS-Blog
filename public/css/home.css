@@ -8,9 +8,29 @@
     --error: rgb(228, 46, 1);
     --border-radius: 0.3rem;
   }
+
 header {
     padding: 40px;
     text-align: center;
     background: var(--primary);
     color: var(--light);
+  }
+
+  .post-heading {
+    display: flex;
+    justify-content: space-between;
+    background: var(--primary);
+    color: var(--light);
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+
+  .pre-post {
+    padding: 30px;
+  }
+  .post-body {
+    padding-left: 10px;
+  border: 3px solid var(--primary);
+
   }
