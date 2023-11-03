@@ -7,5 +7,25 @@
     "express-handlebars": "^7.1.2",
     "mysql2": "^3.6.2",
     "sequelize": "^6.33.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "cms-blog",
+  "description": "## Your Task",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "ariessscode"
+  },
+  "keywords": [
+    "node",
+    "mysql2",
+    "express",
+    "handlebars"
+  ],
+  "author": "Abigail Burtley",
+  "license": "ISC"
 }
