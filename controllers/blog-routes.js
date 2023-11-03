@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const blogPrePost = require('./blogData');
+const blogPrePost = require('../pre-blogData');
 
 
 
