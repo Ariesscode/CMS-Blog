@@ -11,7 +11,7 @@ Blog.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_name: {  //check
+    user_name: {  
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,7 +27,7 @@ Blog.init(
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
-       //check
+       
     },
   },
   {

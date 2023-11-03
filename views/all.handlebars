@@ -1,9 +1,11 @@
 <div class="pre-post">
-        <div class="post-heading">
-      <h2>{{post_heading}}</h2>
-      <p>Posted by {{user_name}} on {{post_date}}</p>
-      </div>
-      <div class="post-body">
-        <p>{{post_body}}</p>
-      </div>
+  {{#each blogPrePost}}
+    <div class="post-heading">
+      <h2>{{this.post_heading}}</h2>
+      <p>Posted by {{this.user_name}} on {{this.post_date}}</p>
+    </div>
+    <div class="post-body">
+      <p>{{this.post_body}}</p>
+    </div>
+  {{/each}}
 </div>
