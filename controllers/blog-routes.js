@@ -1,10 +1,15 @@
 const router = require('express').Router();
 const blogPrePost = require('../pre-blogData');
+const Blog = require('../models/blog');
 
 
 
 router.get('/', async (req, res) => {
-    return res.render('all', { blogPrePost });
+
+    const blogData = await Blog.findAll();
+    const blogPosts = blogData.map(post => post.get({plain: true}))
+
+    return res.render('all', { blogPrePost, blogPosts });
   
 
 });

@@ -42,7 +42,7 @@ header {
     color: pink;
   }
 
-  .pre-post {
+  .pre-post, .blog-posts {
     padding: 30px;
   }
   .post-body {
