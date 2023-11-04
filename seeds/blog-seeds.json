@@ -1,0 +1,20 @@
+[
+    {
+      "user_name": "Frank",
+      "post_heading": "MVC Introduction",
+      "post_body": "MVC allows developers to maintain a true separation of concerns, dividing their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.",
+      "post_date": "11/01/2023"  
+    },
+    {
+      "user_name": "Alice",
+      "post_heading": "Web Development Best Practices",
+      "post_body": "In this post, we'll explore the best practices in web development, including responsive design, performance optimization, and security measures.",
+      "post_date": "11/02/2023"
+    },
+    {
+      "user_name": "Bob",
+      "post_heading": "Data Management",
+      "post_body": "Data management is a critical aspect of software development. We'll discuss various database systems and their pros and cons.",
+      "post_date": "11/03/2023"
+    }
+  ]
