@@ -9,7 +9,8 @@
     "sequelize": "^6.33.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seeds": "node seeds/seeds.js"
   },
   "name": "cms-blog",
   "description": "## Your Task",

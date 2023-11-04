@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
+
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
 const path = require('path');
@@ -17,14 +19,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/blog-routes')); 
 
 
-// const sess = {
-//     secret: SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true,
-//   };
+const sess = {
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  };
 
   
-// app.use(session(sess));
+app.use(session(sess));
 
 app.listen(PORT, () => {
     console.log('Now listening on http://localhost:' + PORT );
