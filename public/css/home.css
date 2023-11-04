@@ -80,3 +80,7 @@ header {
   width: 50%;
   padding: 10px;
 }
+
+.centered-signup {
+  text-align: center;
+}
