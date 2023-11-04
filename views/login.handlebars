@@ -1,19 +1,30 @@
-<h2>Login</h2>
-<div class="user-secret-credentials">
 <form class="form login-form">
+    
+
   <div class="form-group">
+    <div class="centered-text">
+  <h2>Login</h2>
+</div>
     <label for="email-login">email:</label>
-    <input class="form-input" type="text" id="email-login" />
+    <input class="form-input" type="text" id="email-login" placeholder="Email"/>
   </div>
   <div class="form-group">
     <label for="password-login">password:</label>
-    <input class="form-input" type="password" id="password-login" />
+    <input class="form-input" type="password" id="password-login" placeholder="Password"/>
   </div>
   <div class="form-group">
     <button class="btn btn-primary" type="submit">login</button>
   </div>
+   <div class="register-link">
+<p>Don't have an account? <a href="#">Register</a> </p>
+</div>
 </form>
-<form class="form signup-form">
+
+
+<form class="form signup-form" hidden>
+   <div class="centered-text">
+  <h2>Sign-up</h2>
+</div>
     <div class="form-group">
    <label for="new-username"><b>Username:</b></label>
     <input class="form-input" type="text" placeholder="Enter Username" name="username" required>
@@ -27,16 +38,7 @@
     <input class="form-input" type="password" id="password-login" />
   </div>
   <div class="form-group">
-    <button class="btn btn-primary" type="submit">login</button>
+    <button class="btn btn-primary" type="submit">Sign-Up</button>
   </div>
 </form>
-{{!-- <form id="signup-form">
-    <div class="form-group">
-   <label for="username"><b>Username:</b></label>
-    <input class="form-input" type="text" placeholder="Enter Username" name="username" required>
-  </div>
-  <input type="text" id="signup-email" placeholder="Email">
-  <input type="password" id="signup-password" placeholder="Password">
-  <button type="submit">Sign Up</button>
-</form> --}}
-</div>
+
