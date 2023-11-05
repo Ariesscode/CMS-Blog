@@ -97,3 +97,21 @@ header {
 .centered-signup {
   text-align: center;
 }
+
+
+.user-blog-bench {
+  display:flex;
+  justify-content: center;
+  margin-top: 50px;
+ 
+}
+
+.post-history {
+  margin-left: 30%;
+}
+
+.blog-info {
+  margin:auto;
+  margin-left: 50vh;
+  
+}

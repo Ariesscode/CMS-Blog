@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const blogPrePost = require('../pre-blogData');
 const Blog = require('../models/blog');
+const withAuth = require('../utils/auth');
 
 
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
 
     const blogData = await Blog.findAll();
     const blogPosts = blogData.map(post => post.get({plain: true}))
