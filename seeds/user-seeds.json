@@ -2,17 +2,20 @@
     {
       "username": "Abby",
       "email": "abby@email.com",
-      "password": "developer11ty"
+      "password": "developer11ty",
+      "id": 1
     },
     {
       "username": "Karina127",
       "email": "karina127@email.com",
-      "password": "suspenders78"
+      "password": "suspenders78",
+      "id": 2
     },
     {
-      "username": "CalebMcglocking1",
+      "username": "Calebking1",
       "email": "calebM@email.com",
-      "password": "basketball42"
+      "password": "basketball42",
+      "id": 3
     }
     
   ]
