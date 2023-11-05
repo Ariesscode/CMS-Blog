@@ -28,14 +28,13 @@ Comment.init(
                 key: 'id'
             }
         },
-        content_id: {
+        blog_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'blog',
-                key: 'id'
-            }
-        }
-
+              model: 'blog',
+              key: 'id',
+            },
+          },
     },
     {
         sequelize,

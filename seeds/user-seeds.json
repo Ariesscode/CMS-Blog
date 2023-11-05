@@ -1,21 +1,23 @@
 [
     {
+      "id": 1,
       "username": "Abby",
       "email": "abby@email.com",
-      "password": "developer11ty",
-      "id": 1
+      "password": "developer11ty"
     },
     {
+      "id": 2,
       "username": "Karina127",
       "email": "karina127@email.com",
-      "password": "suspenders78",
-      "id": 2
+      "password": "suspenders78"
+      
     },
     {
+      "id": 3,
       "username": "Calebking1",
       "email": "calebM@email.com",
-      "password": "basketball42",
-      "id": 3
+      "password": "basketball42"
+     
     }
     
   ]
