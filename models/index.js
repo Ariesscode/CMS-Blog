@@ -24,4 +24,4 @@ Blog.belongsTo(User, {
 
 
 
-module.exports = { User, Admin, Content, Resource, Image, Comment, ContentImage }
+module.exports = { User, Blog, Comment}
