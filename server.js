@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
+const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({helpers: helpers});
@@ -27,6 +28,8 @@ const sess = {
 
   
 app.use(session(sess));
+
+app.use(routes);
 
 app.listen(PORT, () => {
     console.log('Now listening on http://localhost:' + PORT );

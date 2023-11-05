@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 
 
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
 
     const blogData = await Blog.findAll();
     const blogPosts = blogData.map(post => post.get({plain: true}))
@@ -21,11 +21,11 @@ router.get('/login', async (req, res) => {
     res.render('login');
 });
 
-router.get('/dashboard', async (req, res) => { //check
+router.get('/dashboard', withAuth, async (req, res) => { //check
     res.render('dashboard');
 });
 
-router.get('/home', async (req, res) => { //check
+router.get('/home', withAuth, async (req, res) => { //check
     res.render('home');
 });
 
