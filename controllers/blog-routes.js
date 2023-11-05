@@ -21,11 +21,11 @@ router.get('/login', async (req, res) => {
     res.render('login');
 });
 
-router.get('/dashboard', withAuth, async (req, res) => { //check
+router.get('/dashboard', async (req, res) => { //check
     res.render('dashboard');
 });
 
-router.get('/home', withAuth, async (req, res) => { //check
+router.get('/home', async (req, res) => { //check
     res.render('home');
 });
 
