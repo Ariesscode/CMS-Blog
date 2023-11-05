@@ -1,0 +1,28 @@
+[
+    {
+      "user_name": "Nicole3456",
+      "comment": "geat post!",
+      "user_id": 1,
+      "content_id": 1
+    },
+    {
+      "user_name": "JackBullies",
+      "comment": "I've just started learning JavaScript, and this post is really helpful.",
+      "user_id": 2,
+      "content_id": 1
+    },
+    {
+      "user_name": "StanleyLewis1",
+      "comment": "I agree, this is a comment!",
+      "user_id": 3,
+      "content_id": 1
+    },
+    {
+      "user_name": "Mike324",
+      "comment": "I've been considering a coding bootcamp.",
+      "user_id": 4,
+      "content_id": 2
+    }
+    
+  ]
+  

@@ -11,6 +11,11 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        user_name: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false,
+        },
         comment: {
             type: DataTypes.STRING,
             allowNull: true,
