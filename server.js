@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/blog-routes')); 
+// app.use(require('./controllers/comment-routes'));
+// app.use(require('./controllers/api/user-routes'));
 
 
 const sess = {
