@@ -6,9 +6,6 @@ return {
 format_date: (date) => {
     return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${
       new Date(date).getFullYear()}`
-    },
-     getUserById: (userId) => {
-      return userDatabase.find(user => user.id === userId);
     }
     
   }

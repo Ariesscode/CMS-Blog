@@ -2,7 +2,7 @@
   {{#each blogPrePost}}
     <div class="post-heading">
       <h2>{{this.post_heading}}</h2>
-      <p>Posted by {{this.user_name}} on {{this.post_date}}</p>
+      <p>Posted by {{this.user_name}} on {{format_date this.post_date}}</p>
     </div>
     <div class="post-body">
       <p>{{this.post_body}}</p>
@@ -33,34 +33,34 @@
 <div class="blog-posts">
   {{#each blogPosts}}
   <div class="post-heading">
-      <h2>{{this.post_heading}}</h2>
-      <p>Posted by {{getUserById user_id ../users}} on {{format_date post_date}}</p>
+    <h2>{{this.post_heading}}</h2>
+    <p>Posted by {{ this.user_name }} on {{ this.post_date }}</p>
+  </div>
+  <div class="post-body">
+    <p>{{this.post_body}}</p>
+
+    <div class="comment-form">
+      <h3>Add a Comment</h3>
+      <form id="comment-form" class="comment-area">
+        <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
     </div>
-    <div class="post-body">
-      <p>{{this.post_body}}</p>
-      
-      <div class="comment-form">
-            <h3>Add a Comment</h3>
-            <form id="comment-form" class="comment-area">
-                <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
-                <button type="submit">Post Comment</button>
-            </form>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js">
-        <div class="comment-section">
-            <h3>Comments</h3>
-            <ul class="comment-list">
-                {{#each comments}}
-          <li>
-            <div class="comment">
-              <p>{{getUserById user_id users.user_data 'username'}}</p>
-              <p>{{comment}}</p>
-            </div>
-          </li>
-                {{/each}}
-            </ul>
-        </div>
-        </script>
+    <div class="comment-section">
+      <h3>Comments</h3>
+      <ul class="comment-list">
+        <li>
+          <div class="comment">
+            <p>Comment 1: This is the first comment.</p>
+          </div>
+        </li>
+        <li>
+          <div class="comment">
+            <p>Comment 2: This is the second comment.</p>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
   {{/each}}
 </div>
