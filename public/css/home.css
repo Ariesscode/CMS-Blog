@@ -65,19 +65,22 @@ header {
     
 
   } 
-
-
-  .comment-form {
-    border-top: 3px solid var(--primary);
-      
-
-  }
-
+.comment-form textarea {
+  width: 500px;
+}
 .comment-form button {
   display:block;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
+  .comment-form {
+   border-top: 3px solid var(--primary);
+    margin: 0;
+    margin-right:10px;
+    text-align: center;
+    margin-bottom: 5px;
 
+  }
   .login-form, .signup-form {
     border: 5px solid var(--primary);
   margin: auto;
