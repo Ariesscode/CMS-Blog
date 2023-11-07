@@ -118,13 +118,15 @@ header {
 
 .user-blog-bench {
   display:flex;
-  justify-content: center;
+
   margin-top: 50px;
  
 }
 
 .post-history {
-  margin-left: 30%;
+  margin-left: 10%;
+  background-color:  var(--tertiary) #86938f;
+  width:100%;
 }
 
 .blog-info {
@@ -132,3 +134,10 @@ header {
   margin-left: 50vh;
   
 }
+
+nav {
+  background-color: #182c23;
+  width: 100%;
+  
+}
+
