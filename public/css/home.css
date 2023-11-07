@@ -62,7 +62,21 @@ header {
 
   .blog-posts .post-body {
     margin-bottom: 20px;
+    
+
   } 
+
+
+  .comment-form {
+    border-top: 3px solid var(--primary);
+      
+
+  }
+
+.comment-form button {
+  display:block;
+  justify-content: center;
+}
 
   .login-form, .signup-form {
     border: 5px solid var(--primary);

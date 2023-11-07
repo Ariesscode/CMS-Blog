@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const blogPrePost = require('../pre-blogData');
 const Blog = require('../models/blog');
-const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth'); //add auth after create app
 
 
 
