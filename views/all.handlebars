@@ -34,7 +34,7 @@
   {{#each blogPosts}}
   <div class="post-heading">
     <h2>{{this.post_heading}}</h2>
-    <p>Posted by {{ this.user_name }} on {{ this.post_date }}</p>
+    <p>Posted by {{ this.user_name }} on {{ format_date this.post_date }}</p>
   </div>
   <div class="post-body">
     <p>{{this.post_body}}</p>
