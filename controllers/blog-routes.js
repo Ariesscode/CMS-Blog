@@ -5,7 +5,10 @@ const Blog = require('../models/blog');
 const withAuth = require('../utils/auth'); //add auth after create app
 
 
-
+router.get('/login', async (req, res) => { 
+    res.render('login');
+  });
+  
 router.get('/', async (req, res) => {
 
     const blogData = await Blog.findAll();
