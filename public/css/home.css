@@ -82,18 +82,21 @@ header {
 
   }
   .login-form, .signup-form {
-    border: 5px solid var(--primary);
+    border: 1px solid  #182c23;
   margin: auto;
-  width: 30%;
+  width: 40%;
   padding: 10px;
   margin-top:40px;
+  
   }
 
   .form-input {
     display: block;
   }
   .loginBtn {
-    width:50px;
+    width:60px;
+    background-color: var(--primary);
+    border-color: white;
   }
 .signUpBtn {
   width: 90px;

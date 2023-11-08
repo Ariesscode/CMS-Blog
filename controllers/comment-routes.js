@@ -1,7 +1,22 @@
 const router = require('express').Router();
 const {User, Blog, Comment} = require('../../models');
-
+//ROUTES for comments
 router.get('/', async (req, res) => {
+    try {
+        const commentData = await Comment.findAll({
+            include: [
+                {model: User, attributes: ['username']},
+                {model: Blog}
+            ],
+            exclude: [{model: User, attributes: ['password']}]
+        });
+        res.status(200).json(commentData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/:id', async (req, res) => {  //check route 
     try {
         const commentData = await Comment.findAll({
             include: [
