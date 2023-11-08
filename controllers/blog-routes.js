@@ -4,14 +4,21 @@ const Comment = require('../models/comment');
 const Blog = require('../models/blog');
 const withAuth = require('../utils/auth'); //add auth after create app
 
-//ROUTES for blog posts 
-// router.get('/login', async (req, res) => { 
-//     if (req.session.loggedIn) {  //check move
-//         res.redirect('/');
-//         return;
-//       }
-//       res.render('login');
-//     });
+// ROUTES for blog posts 
+router.get('/login', async (req, res) => { 
+
+      res.render('login');
+    });
+
+
+    router.get('/dashboard', async (req, res) => { //check
+        res.render('dashboard');
+    });
+    
+    router.get('/home', async (req, res) => { //check
+        res.render('home');
+    });
+    
   //blogPosts
 router.get('/', async (req, res) => {
 
@@ -87,17 +94,6 @@ router.put('/:id', async (req, res) =>{
 
 
 
-
-
-
-
-router.get('/dashboard', async (req, res) => { //check
-    res.render('dashboard');
-});
-
-router.get('/home', async (req, res) => { //check
-    res.render('home');
-});
 
 
 
