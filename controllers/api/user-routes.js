@@ -7,12 +7,12 @@ router.post('/', async (req, res) => {
     const dbUserData = await User.create({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      password: req.body.password
     });
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
 
       res.status(200).json(dbUserData);
     });
@@ -24,11 +24,7 @@ router.post('/', async (req, res) => {
 //user/login
 router.post('/login', async (req, res) => {
   try {
-    const dbUserData = await User.findOne({
-      where: {
-        email: req.body.email,
-      },
-    });
+    const dbUserData = await User.findOne({where: {email: req.body.email }});
 
     if (!dbUserData) {
       res
@@ -48,7 +44,7 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
 
       res
         .status(200)
@@ -62,7 +58,7 @@ router.post('/login', async (req, res) => {
 
 
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });

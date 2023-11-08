@@ -3,7 +3,8 @@ const blogPrePost = require('../pre-blogData');
 const Comment = require('../models/comment');
 const Blog = require('../models/blog');
 const User = require('../models/user');
-const withAuth = require('../utils/auth'); //add auth after create app
+const withAuth = require('../utils/auth');
+ //add auth after create app
 
 // ROUTES for blog posts 
 
@@ -88,7 +89,7 @@ router.put('/dashboard/:id', withAuth, async (req, res) =>{
   
 
     router.get('/login', (req, res) => {
-        if (req.session.loggedIn) {
+        if (req.session.logged_in) {
           res.redirect('/');
           return;
         }
