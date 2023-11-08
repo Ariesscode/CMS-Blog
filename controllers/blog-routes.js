@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     const commentData = await Comment.findAll();
     const blogComments = commentData.map(comment => comment.get({plain: true}))
 
-    return res.render('all', { blogPrePost, blogData, blogPosts, blogComments, loggedIn: req.session.loggedIn, });
+    return res.render('all', { blogPrePost, blogData, blogPosts, blogComments });
 });
 
 router.get('/dashboard/:id', withAuth, async (req, res) =>{
