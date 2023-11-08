@@ -145,10 +145,10 @@ nav {
   
 }
 
-.sign-up {
+#signup-form {
   display: none;
 }
 
-.log-in {
+#login-form {
   display: block;
 }

@@ -40,7 +40,28 @@ const signupFormHandler = async (event) => {
     }
   }
 };
+document.addEventListener('DOMContentLoaded', function() {
+const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const toggleButton = document.getElementById('register-link');
 
+  // Function to toggle between login and register forms
+  function toggleForms() {
+    if (loginForm.style.display === 'none') {
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      toggleButton.textContent = 'Register';
+    } else {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'block';
+      toggleButton.textContent = 'Login';
+    }
+  }
+
+  // Add a click event listener to the button
+  toggleButton.addEventListener('click', toggleForms);
+
+});
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
