@@ -50,11 +50,10 @@ const loginForm = document.getElementById('login-form');
     if (loginForm.style.display === 'none') {
       loginForm.style.display = 'block';
       signupForm.style.display = 'none';
-      toggleButton.textContent = 'Register';
+      
     } else {
       loginForm.style.display = 'none';
       signupForm.style.display = 'block';
-      toggleButton.textContent = 'Login';
     }
   }
 
