@@ -1,4 +1,4 @@
-<form class="form login-form">
+<form class="form login-form log-in">
     <div class="form-group">
     <div class="centered-text">
   <h2>Login</h2>
@@ -20,24 +20,25 @@
 </form>
 
 
-<form class="form signup-form sign-up" hidden>
+<form class="form signup-form sign-up">
    <div class="centered-signup">
   <h2>Sign-up</h2>
 </div>
     <div class="form-group sign-up">
    <label for="new-username"><b>Username:</b></label>
-    <input class="form-input" type="text" placeholder="Enter Username" name="username" required>
+    <input class="form-input" type="text" placeholder="Enter Username" id="username-signup" name="username" required>
   </div>
   <div class="form-group sign up">
     <label for="new-email">Email:</label>
-    <input class="form-input" type="text" id="email-login" />
+    <input class="form-input" type="text" id="email-signup" />
   </div>
   <div class="form-group sign-up">
     <label for="new-password">Password:</label>
-    <input class="form-input" type="password" id="password-login" />
+    <input class="form-input" type="password" id="password-signup" />
   </div>
   <div class="form-group sign-up">
     <button class="btn btn-primary signUpBtn" type="submit">Sign-Up</button>
   </div>
 </form>
 
+<script src="./js/login.js"></script>

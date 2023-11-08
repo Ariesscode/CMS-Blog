@@ -100,6 +100,8 @@ header {
   }
 .signUpBtn {
   width: 90px;
+  background-color: var(--primary);
+    border-color: white;
 }
 .form-group {
   margin: auto;
@@ -143,3 +145,10 @@ nav {
   
 }
 
+.sign-up {
+  display: none;
+}
+
+.log-in {
+  display: block;
+}
