@@ -2,11 +2,14 @@ const router = require('express').Router();
 const blogPrePost = require('../pre-blogData');
 const Comment = require('../models/comment');
 const Blog = require('../models/blog');
+const User = require('../models/user');
 const withAuth = require('../utils/auth'); //add auth after create app
 
 // ROUTES for blog posts 
 
-    router.get('/dashboard', async (req, res) => { //check
+
+
+    router.get('/dashboard', withAuth, async (req, res) => { //check
         res.render('dashboard');
     });
     
@@ -19,10 +22,10 @@ router.get('/', async (req, res) => {
     const commentData = await Comment.findAll();
     const blogComments = commentData.map(comment => comment.get({plain: true}))
 
-    return res.render('all', { blogPrePost, blogData, blogPosts, blogComments });
+    return res.render('all', { blogPrePost, blogData, blogPosts, blogComments, loggedIn: req.session.loggedIn, });
 });
 
-router.get('/dashboard/:id', async (req, res) =>{
+router.get('/dashboard/:id', withAuth, async (req, res) =>{
     try {
         const contentData = await Blog.findByPk(req.params.id, {
             include: [{model: User, attributes: ['username']},
@@ -40,7 +43,7 @@ router.get('/dashboard/:id', async (req, res) =>{
 });
 
 
-router.post('/dashboard', async (req, res) => {
+router.post('/dashboard', withAuth, async (req, res) => {
     try {
       const newContent = await Blog.create({
         ...req.body,
@@ -52,7 +55,7 @@ router.post('/dashboard', async (req, res) => {
       res.status(400).json(err);
     }
   });
-router.put('/dashboard/:id', async (req, res) =>{
+router.put('/dashboard/:id', withAuth, async (req, res) =>{
     try {
         const contentData = await Blog.update(req.body, {
             where: {id: req.params.id}
@@ -67,7 +70,7 @@ router.put('/dashboard/:id', async (req, res) =>{
     }
 });
 
-    router.delete('/dashboard/:id', async (req, res) =>{
+    router.delete('/dashboard/:id', withAuth, async (req, res) =>{
         try {
             const contentData = await Blog.destroy({
                 where: {id: req.params.id}
@@ -85,12 +88,10 @@ router.put('/dashboard/:id', async (req, res) =>{
   
 
     router.get('/login', (req, res) => {
-        // If the user is already logged in, redirect to the homepage
-        // if (req.session.loggedIn) {
-        //   res.redirect('/');
-        //   return;
-        // }
-        // Otherwise, render the 'login' template
+        if (req.session.loggedIn) {
+          res.redirect('/');
+          return;
+        }
         res.render('login');
       });
 

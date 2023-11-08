@@ -152,3 +152,7 @@ nav {
 #login-form {
   display: block;
 }
+
+#login-commment-allowed {
+  display: block;
+}

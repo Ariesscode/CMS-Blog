@@ -10,7 +10,12 @@
             <h3>Add a Comment</h3>
             <form id="comment-form">
                 <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
+                {{#if loggedIn}}
                 <button type="submit">Post Comment</button>
+                {{else}}
+
+        <a id="login-commment-allowed" href="/login">Login to leave a comment!</a>
+                {{/if}}
             </form>
         </div>
         <div class="comment-section">
@@ -43,7 +48,11 @@
       <h3>Add a Comment</h3>
       <form id="comment-form" class="comment-area">
         <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
+        {{#if loggedIn}}
         <button type="submit">Post Comment</button>
+        {{else}}
+        <a id="login-commment-allowed" href="/login">Login to leave a comment!</a>
+        {{/if}}
       </form>
     </div>
     <div class="comment-section">

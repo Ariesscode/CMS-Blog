@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {User, Blog, Comment} = require('../models');
+const withAuth = require('../utils/auth');
 //ROUTES for comments
 router.get('/', async (req, res) => {
     try {
@@ -39,7 +40,7 @@ router.get('/:id', async (req, res) => {
   });
   
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
       const newComment = await Comment.create({
         ...req.body,
