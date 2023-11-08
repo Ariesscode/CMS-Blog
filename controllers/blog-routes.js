@@ -5,20 +5,12 @@ const Blog = require('../models/blog');
 const withAuth = require('../utils/auth'); //add auth after create app
 
 // ROUTES for blog posts 
-router.get('/login', async (req, res) => { 
-
-      res.render('login');
-    });
-
 
     router.get('/dashboard', async (req, res) => { //check
         res.render('dashboard');
     });
     
-    router.get('/home', async (req, res) => { //check
-        res.render('home');
-    });
-    
+   
   //blogPosts
 router.get('/', async (req, res) => {
 
@@ -30,7 +22,7 @@ router.get('/', async (req, res) => {
     return res.render('all', { blogPrePost, blogData, blogPosts, blogComments });
 });
 
-router.get('/:id', async (req, res) =>{
+router.get('/dashboard/:id', async (req, res) =>{
     try {
         const contentData = await Blog.findByPk(req.params.id, {
             include: [{model: User, attributes: ['username']},
@@ -48,7 +40,7 @@ router.get('/:id', async (req, res) =>{
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/dashboard', async (req, res) => {
     try {
       const newContent = await Blog.create({
         ...req.body,
@@ -60,7 +52,7 @@ router.post('/', async (req, res) => {
       res.status(400).json(err);
     }
   });
-router.put('/:id', async (req, res) =>{
+router.put('/dashboard/:id', async (req, res) =>{
     try {
         const contentData = await Blog.update(req.body, {
             where: {id: req.params.id}
@@ -75,7 +67,7 @@ router.put('/:id', async (req, res) =>{
     }
 });
 
-    router.delete('/:id', async (req, res) =>{
+    router.delete('/dashboard/:id', async (req, res) =>{
         try {
             const contentData = await Blog.destroy({
                 where: {id: req.params.id}
@@ -92,7 +84,15 @@ router.put('/:id', async (req, res) =>{
     
   
 
-
+    router.get('/login', (req, res) => {
+        // If the user is already logged in, redirect to the homepage
+        // if (req.session.loggedIn) {
+        //   res.redirect('/');
+        //   return;
+        // }
+        // Otherwise, render the 'login' template
+        res.render('login');
+      });
 
 
 

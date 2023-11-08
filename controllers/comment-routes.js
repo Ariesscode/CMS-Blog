@@ -16,20 +16,28 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {  //check route 
+router.get('/:id', async (req, res) => {
     try {
-        const commentData = await Comment.findAll({
-            include: [
-                {model: User, attributes: ['username']},
-                {model: Blog}
-            ],
-            exclude: [{model: User, attributes: ['password']}]
-        });
-        res.status(200).json(commentData);
+      const commentData = await Comment.findByPk(req.params.id, {
+        include: [
+          { model: User, attributes: ['username'] },
+          { model: Blog },
+        ],
+        exclude: [{ model: User, attributes: ['password'] },
+        ],
+      });
+  
+      if (!commentData) {
+        res.status(404).json({ message: 'No comment found with this id!' });
+        return;
+      }
+  
+      res.status(200).json(commentData);
     } catch (err) {
-        res.status(500).json(err);
+      res.status(500).json(err);
     }
-});
+  });
+  
 
 router.post('/', async (req, res) => {
     try {
