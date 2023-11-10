@@ -20,7 +20,11 @@ app.set('view engine', 'handlebars');
 
 
 
-app.use(require('./controllers/blog-routes')); 
+app.use(require('./controllers/api/blog-routes')); 
+app.use(require('./controllers/api/blog-routes'));
+app.use(require('./controllers/api/dashboard-routes'));
+app.use(require('./controllers/api/user-routes'));
+app.use(require('./controllers/homeRoutes'));
 
 
 const sess = {

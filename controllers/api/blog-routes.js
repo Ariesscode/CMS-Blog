@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const blogPrePost = require('../pre-blogData');
-const Comment = require('../models/comment');
-const Blog = require('../models/blog');
-const User = require('../models/user');
-const withAuth = require('../utils/auth');
+const blogPrePost = require('../../pre-blogData');
+const Comment = require('../../models/comment');
+const Blog = require('../../models/blog');
+const User = require('../../models/user');
+const withAuth = require('../../utils/auth');
  //add auth after create app
 
 
