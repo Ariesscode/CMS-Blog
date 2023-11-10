@@ -2,12 +2,12 @@ const router = require('express').Router();
 const {User, Blog, Comment} = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// router.get('/dashboard', async (req, res) => { //check
-//     res.render('dashboard');
-// });
+router.get('/', async (req, res) => { //check
+    res.render('dashboard');
+});
 
 
-router.get('/posthistory', withAuth, async (req, res) => {
+router.get('/posthistory', async (req, res) => {
     try {
       // Fetch the user's posts from the database
       const userPosts = await Blog.findAll({
@@ -84,3 +84,4 @@ router.put('/:id', withAuth, async (req, res) =>{
         }
     });
     
+    module.exports = router

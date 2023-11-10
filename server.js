@@ -6,7 +6,9 @@ const helpers = require('./utils/helpers');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({helpers: helpers});
 const path = require('path');
+const apiRoutes = require('./controllers/api');
 const sequelize = require('./config/connection');
+const withAuth = require('./utils/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,11 +22,11 @@ app.set('view engine', 'handlebars');
 
 
 
-app.use(require('./controllers/api/blog-routes')); 
-app.use(require('./controllers/api/blog-routes'));
-app.use(require('./controllers/api/dashboard-routes'));
-app.use(require('./controllers/api/user-routes'));
-app.use(require('./controllers/homeRoutes'));
+app.use('/blog', require('./controllers/api/blog-routes')); 
+app.use('/dashboard', withAuth, require('./controllers/api/dashboard-routes'));
+app.use('/users', require('./controllers/api/user-routes'));
+app.use('/api', apiRoutes);
+
 
 
 const sess = {
@@ -39,10 +41,6 @@ const sess = {
 
   
   app.use(session(sess));
-
-  app.engine('handlebars', hbs.engine);
-  app.set('view engine', 'handlebars');
-  
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(path.join(__dirname, 'public')));
