@@ -17,6 +17,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views', './views'); //check
 
 
 

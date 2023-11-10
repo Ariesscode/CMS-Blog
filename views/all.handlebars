@@ -10,12 +10,11 @@
             <h3>Add a Comment</h3>
             <form id="comment-form" action="/blog/:blog_id/comment" method="POST">
                 <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
-                {{!-- {{#if logged_in}} --}}
+                 {{#if logged_in}}
                 <button type="submit">Post Comment</button>
-                {{!-- {{else}} --}}
-
-        <a id="login-commment-allowed" href="/login">Login to leave a comment!</a>
-                {{!-- {{/if}} --}}
+                 {{else}} 
+                 <p>Please <a href="/login">login</a> to add a comment.</p>
+                  {{/if}}
             </form>
         </div>
         <div class="comment-section">
