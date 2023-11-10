@@ -47,6 +47,8 @@ router.post('/', withAuth, async (req, res) => {
       const newContent = await Blog.create({
         ...req.body,
         user_id: req.session.user_id,
+        title: req.body.post_heading,
+        text: req.body.post_body,
       });
   
       res.status(200).json(newContent);
