@@ -1,21 +1,23 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Blog, Comment } = require('../../models');
 
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const dbUserData = await User.create({
+      ...req.body,
       username: req.body.username,
       email: req.body.email,
       password: req.body.password
-    });
-
+    
+    })
     req.session.save(() => {
-      req.session.user_id = dbUserData.id;
+      req.session.user_id = dbUserData.id,
       req.session.logged_in = true;
 
       res.status(200).json(dbUserData);
-    });
+    })
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -27,32 +29,55 @@ router.post('/login', async (req, res) => {
     const dbUserData = await User.findOne({where: {email: req.body.email }});
 
     if (!dbUserData) {
-      res
-        .status(400)
-        .json({ message: 'Login credentials un-identified. Please try again.' });
+      res.status(400)
+        res.json({ message: 'Login credentials un-identified. Please try again.' });
       return;
     }
 
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Unable to process log-in. Please try again!' });
+      res.statusText = 'Incorrect password';
+        res.status(400)
+        res.json({ message: 'Unable to process log-in. Please try again!' });
       return;
-    }
+    } 
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id
       req.session.logged_in = true;
-
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+      res.status(200).json({ message: 'You are now logged in!' });
+    
     });
+  
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+});
+
+router.get('/profile', async (req, res) => {
+  try {
+      const userData = await User.findByPk(req.session.user_id, {
+          attributes: { exclude: ['password'] },
+          include: [{ model: Content, Resource }]
+      });
+      res.status(200).json(userData);
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
+
+
+router.get('/userloggedin', async (req, res) => {
+  try {
+      const userData = await User.findByPk(req.session.user_id, {
+          include: [{ model: Blog, Comment }],
+          attributes: { exclude: ['password'] }
+      });
+      res.status(200).json(userData);
+  } catch (err) {
+      res.status(500).json(err);
   }
 });
 
@@ -60,12 +85,16 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
+      res.redirect('/')
       res.status(204).end();
     });
   } else {
     res.status(404).end();
   }
 });
+
+
+
 
 
 // DELETE /api/users/":id"

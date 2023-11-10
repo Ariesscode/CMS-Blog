@@ -1,40 +1,42 @@
 <div class="user-blog-bench">
-<form id="create-post-form">
-  <div class="dashboard-area">
-    <h2>Title:</h2>
-    <textarea id="title" name="title" rows="2" cols="50"></textarea>
-    <h2>Text:</h2>
-    <textarea id="text" name="text" rows="10" cols="50"></textarea>
-  </div>
-  <button type="button" id="create-post-button">Create Post</button>
-</form>
-<div class="post-history">
+  <form id="create-post-form">
+    <div class="dashboard-area">
+      <h2>Title:</h2>
+      <textarea id="title" name="title" rows="2" cols="50"></textarea>
+      <h2>Text:</h2>
+      <textarea id="text" name="text" rows="10" cols="50"></textarea>
+    </div>
+    <button type="button" id="create-post-button">Create Post</button>
+  </form>
+  <div class="post-history">
     <h2>Post history:</h2>
     <table class="table">
-  <thead  class="table-success">
-    <tr>
-      <th scope="col">Date created</th>
-      <th scope="col">Title</th>
-      <th scope="col">Content</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      
-      <td>
-      <button class="edit-post btn"><i class="bi bi-trash"></i></button>
-      <button class="delete-post btn"><i class="bi bi-pencil-square"></i></button>
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-    </div>
-    
+      <thead class="table-success">
+        <tr>
+          <th scope="col">Date created</th>
+          <th scope="col">Title</th>
+          <th scope="col">Content</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each userPosts}}
+        <tr>
+          <th scope="row">{{id}}</th>
+          <td>{{post_date}}</td>
+          <td>{{post_heading}}</td>
+          <td>{{post_body}}</td>
+          <td>
+            <a href="/dashboard/edit/{{id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
+            <a href="/dashboard/delete/{{id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
+          </td>
+
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div>
+
 
 </div>
-
