@@ -48,10 +48,10 @@
       <form id="comment-form" class="comment-area">
         <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
         {{#if logged_in}}
-        <button type="submit">Post Comment</button>
-        {{else}}
-        <a id="login-commment-allowed" href="/login">Login to leave a comment!</a>
-        {{/if}}
+                <button type="submit">Post Comment</button>
+                 {{else}} 
+                 <p>Please <a href="/login">login</a> to add a comment.</p>
+                  {{/if}}
       </form>
     </div>
     <div class="comment-section">
