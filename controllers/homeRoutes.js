@@ -2,7 +2,6 @@ const router = require('express').Router();
 const blogPrePost = require('../pre-blogData');
 const Comment = require('../models/comment');
 const Blog = require('../models/blog');
-const withAuth = require('../utils/auth');
 
 
 
@@ -18,13 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 
-
-router.get('/login', async (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
-
+router.get('/login', async (req,res) => {
   res.render('login');
 });
 

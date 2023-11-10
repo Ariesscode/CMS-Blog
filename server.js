@@ -26,6 +26,7 @@ app.set('views', './views'); //check
 app.use('/blog', require('./controllers/api/blog-routes')); 
 app.use('/dashboard', withAuth, require('./controllers/api/dashboard-routes'));
 app.use('/users', require('./controllers/api/user-routes'));
+app.use('/', require('./controllers/homeRoutes'));
 app.use('/api', apiRoutes);
 
 
