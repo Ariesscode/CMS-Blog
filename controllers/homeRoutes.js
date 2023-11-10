@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
+const blogPrePost = require('../pre-blogData');
+const Comment = require('../models/comment');
+const Blog = require('../models/blog');
+const User = require('../models/user');
+const withAuth = require('../utils/auth');
 
 // Prevent non logged in users from viewing the homepage
 // router.get('/', withAuth, async (req, res) => {
@@ -22,22 +27,26 @@ const withAuth = require('../utils/auth');
 //   }
 // });
 
-router.get('/', (req, res) => {
-  // Render the 'login' view
-  res.render('all');
+
+router.get('/', async (req, res) => {
+
+  const blogData = await Blog.findAll();
+  const blogPosts = blogData.map(post => post.get({plain: true}))
+  const commentData = await Comment.findAll();
+  const blogComments = commentData.map(comment => comment.get({plain: true}))
+
+  return res.render('all', { blogPrePost, blogData, blogPosts, blogComments });
 });
 
-router.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
 
-router.get('/login', withAuth, (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
 
-  res.render('login');
-});
+// router.get('/login', withAuth, (req, res) => {
+//   if (req.session.logged_in) {
+//     res.redirect('/');
+//     return;
+//   }
+
+//   res.render('login');
+// });
 
 module.exports = router;

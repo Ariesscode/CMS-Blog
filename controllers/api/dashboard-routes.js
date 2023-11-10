@@ -2,12 +2,12 @@ const router = require('express').Router();
 const {User, Blog, Comment} = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/dashboard', async (req, res) => { //check
-    res.render('dashboard');
-});
+// router.get('/dashboard', async (req, res) => { //check
+//     res.render('dashboard');
+// });
 
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/posthistory', withAuth, async (req, res) => {
     try {
       // Fetch the user's posts from the database
       const userPosts = await Blog.findAll({
@@ -17,7 +17,7 @@ router.get('/', withAuth, async (req, res) => {
         attributes: ['id', 'post_heading', 'post_body', 'post_date'], // Define the columns you want to display
       });
   
-      res.render('dashboard', { userPosts }); // Render the dashboard page with user's posts
+      res.render('dashboard', { userPosts }); // Render the dashboard page with user's posts in table
     } catch (err) {
       res.status(500).json(err);
     }
