@@ -2,12 +2,13 @@ const router = require('express').Router();
 const {User, Blog, Comment} = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/', async (req, res) => { //check
-    res.render('dashboard');
+router.get('/', withAuth, async (req, res) => { //check
+  const logged_in = req.session.logged_in;
+    res.render('dashboard', { logged_in });
 });
 
 
-router.get('/posthistory', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
       // Fetch the user's posts from the database
       const userPosts = await Blog.findAll({
