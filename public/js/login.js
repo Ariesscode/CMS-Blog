@@ -62,9 +62,9 @@ const loginForm = document.getElementById('login-form');
 
 });
 document
-  .querySelector('.login-form')
+  .querySelector('.loginBtn')
   .addEventListener('submit', loginFormHandler);
 
 document
-  .querySelector('.signup-form')
+  .querySelector('.signUpBtn')
   .addEventListener('submit', signupFormHandler);
