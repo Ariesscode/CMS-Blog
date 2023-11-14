@@ -4,7 +4,7 @@ const session = require('express-session');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({helpers: helpers});
+const hbs = exphbs.create({helpers: helpers, defaultLayout: 'main' });
 const path = require('path');
 const apiRoutes = require('./controllers/api');
 const sequelize = require('./config/connection');
@@ -15,14 +15,37 @@ const PORT = process.env.PORT || 3001;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+const sess = {
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict'
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+  db: sequelize
+  })
+  };
+
+app.use(session(sess));
+
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', './views'); //check
 
-
-
-
-
+app.use(routes);
 app.use('/blog', require('./controllers/api/blog-routes')); 
 app.use('/dashboard', withAuth, require('./controllers/api/dashboard-routes'));
 app.use('/users', require('./controllers/api/user-routes'));
@@ -31,28 +54,8 @@ app.use('/api', apiRoutes);
 
 
 
-const sess = {
-    secret: process.env.SESSION_SECRET,
-    cookie: {
-      maxAge: 300000,
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict'
-  },
-    resave: false,
-    saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize
-  })
-  };
+  
 
-  
-  app.use(session(sess));
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.static(path.join(__dirname, 'public')));
-  
-  app.use(routes);
   
 
 
