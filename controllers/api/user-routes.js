@@ -2,25 +2,19 @@ const router = require('express').Router();
 const { User, Blog, Comment } = require('../../models');
 
 
-router.post('/register', async (req, res) => {
+router.post('/api/users/register', async (req, res) => {
   try {
-    const dbUserData = await User.create({
-      ...req.body,
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
+    const userData = await User.create(req.body);
     
-    })
+    
     req.session.save(() => {
-      req.session.user_id = dbUserData.id,
+      req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.status(200).json(dbUserData);
-    })
-
+      res.status(200).json(userData);
+    });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 //user/login
