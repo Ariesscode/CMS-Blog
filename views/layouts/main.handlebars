@@ -21,10 +21,10 @@
         <!-- If the user is logged in, show a logout button -->
         {{#if logged_in}}
         <a id="logout" href="/logout">Logout</a>
-       {{/if}}
+     {{else}}
         <!-- Otherwise, show a link to login -->
         <a id="login" href="/login">Login</a>
-        
+          {{/if}}
     </nav>
     </header>
     <main class="container container-fluid mt-5">
