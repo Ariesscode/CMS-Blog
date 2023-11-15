@@ -18,6 +18,6 @@ module.exports = {
           book = "📙";
         }
     
-        return `<span for="img" aria-label="book">${book}</span>`;
+        return `${book}`;
       },
     };

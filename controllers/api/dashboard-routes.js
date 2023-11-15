@@ -10,7 +10,7 @@ router.get('/', withAuth, async (req, res) => { //check
 
 router.get('/', withAuth, async (req, res) => {
     try {
-   
+      // Fetch the user's posts from the database
     
       const userPosts = await Blog.findAll({
         where: {
