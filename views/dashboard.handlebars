@@ -1,12 +1,13 @@
 <div class="user-blog-bench">
   <form id="create-post-form">
     <div class="dashboard-area">
-      {{#each users as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{{get_emoji}}} {{user.username}}</h2>
-  </div>
-  {{/each}}
+       {{#if dbUserData.username}}
+        <div class="row align-center mb-5">
+          <div class="col-md-6">
+            <h2>{{get_emoji}} {{dbUserData.username}}</h2>
+          </div>
+        </div>
+      {{/if}}
       <h2>Title:</h2>
       <textarea id="title" name="title" rows="2" cols="50"></textarea>
       <h2>Text:</h2>
@@ -27,22 +28,18 @@
       </thead>
       <tbody>
         {{#each userPosts}}
-        <tr>
-          <th scope="row">{{id}}</th>
-          <td>{{post_date}}</td>
-          <td>{{post_heading}}</td>
-          <td>{{post_body}}</td>
-          <td>
-            <a href="/dashboard/edit/{{id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
-            <a href="/dashboard/delete/{{id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
-          </td>
-
-        </tr>
+          <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{post_date}}</td>
+            <td>{{post_heading}}</td>
+            <td>{{post_body}}</td>
+            <td>
+              <a href="/dashboard/edit/{{id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
+              <a href="/dashboard/delete/{{id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
+            </td>
+          </tr>
         {{/each}}
-
       </tbody>
     </table>
   </div>
-
-
 </div>
