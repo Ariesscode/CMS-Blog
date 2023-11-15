@@ -10,15 +10,22 @@ router.get('/', withAuth, async (req, res) => { //check
 
 router.get('/', withAuth, async (req, res) => {
     try {
-      // Fetch the user's posts from the database
+   
+    
       const userPosts = await Blog.findAll({
         where: {
           user_id: req.session.user_id,
         },
-        attributes: ['id', 'post_heading', 'post_body', 'post_date'], // Define the columns you want to display
+        attributes: ['id', 'post_heading', 'post_body', 'post_date'], 
+        include: [
+          {
+            model: User,
+            attributes: ['username'], 
+          },
+        ],
       });
-  
-      res.render('dashboard', { userPosts }); // Render the dashboard page with user's posts in table
+      const logged_in = !!req.session.user_id;
+      res.render('dashboard', { userPosts, logged_in }); 
     } catch (err) {
       res.status(500).json(err);
     }
