@@ -1,4 +1,4 @@
-<div class="pre-post">  <!--this is pulling from a file -->
+<div class="pre-post">  <!--this is pulling from a file/ harcoded from array -->
   {{#each blogPrePost}}
   <div class="post-heading">
     <h2>{{this.post_heading}}</h2>
@@ -34,17 +34,17 @@
   {{/each}}
 </div>
 
- <div class="blog-posts">  <!--this is pulling from mysql database -->
+ <div class="blog-posts">  <!--this is pulling from mysql database HELP -->
   {{#each blogPosts}}
   <div class="post-heading">
-    <h2>{{this.post_heading}}</h2>
-    <p>Posted by {{this.user_name}} on {{format_date this.post_date}}</p>
+    <h2>{{post_heading}}</h2>
+    <p>Posted by {{user_name}} on {{format_date post_date}}</p>
   </div>
   <div class="post-body">
-    <p>{{this.post_body}}</p>
+    <p>{{post_body}}</p>
     <div class="comment-form">
       <h3>Add a Comment</h3>
-      <form id="comment-form" action="/:blog_id/comment" method="POST">
+      <form id="comment-form" action="/comment/{{this.blog_id}}" method="POST">
         <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
        {{#if logged_in}}
         <button type="submit">Post Comment</button>
@@ -56,11 +56,11 @@
     <div class="comment-section">
       <h3>Comments</h3>
       <ul class="comment-list">
-        {{#each blogComments}}
+        {{#each comments}}
         <li>
           <div class="comment">
             <p>{{User.username}}</p>
-            <p>{{Comment.comment}}</p>
+            <p>{{comment}}</p>
           </div>
         </li>
         {{/each}}
