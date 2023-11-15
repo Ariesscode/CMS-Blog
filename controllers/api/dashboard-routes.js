@@ -4,8 +4,44 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', withAuth, async (req, res) => { //check
   const logged_in = req.session.logged_in;
-    res.render('dashboard', { logged_in });
+
+  // Define an async function to retrieve the username
+  async function getUsernameByUserId(userId) {
+    try {
+      const user = await User.findByPk(userId); // Find the user by primary key (user_id)
+
+      if (!user) {
+        // User not found
+        return null;
+      }
+
+      return user.username; // Return the username
+    } catch (error) {
+      console.error('Error fetching username:', error);
+      throw error;
+    }
+  }
+
+  // Usage
+  const sessionUserId = await req.session.user_id;
+
+  const userIdFromDB = await getUsernameByUserId(sessionUserId)
+    .then((username) => {
+      if (username) {
+        console.log('Username:', username);
+        return username;
+      } else {
+        console.log('User not found.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+  console.log(userIdFromDB)
+  res.render('dashboard', { logged_in, userIdFromDB });
 });
+  
 
 
 router.get('/', withAuth, async (req, res) => {
