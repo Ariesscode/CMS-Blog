@@ -17,7 +17,11 @@ router.post('/comment/:blog_id', withAuth, async (req, res) => {
         user_id: req.session.user_id,
         
       });
-      res.status(200).json(newComment);
+      const logged_in = true;
+      res.status(200).json({
+        newComment,
+        logged_in,
+      });
       
   
     } catch (err) {

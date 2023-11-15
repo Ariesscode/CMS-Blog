@@ -50,17 +50,17 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/profile', async (req, res) => {
-  try {
-      const userData = await User.findByPk(req.session.user_id, {
-          attributes: { exclude: ['password'] },
-          include: [{ model: Content, Resource }]
-      });
-      res.status(200).json(userData);
-  } catch (err) {
-      res.status(500).json(err);
-  }
-});
+// router.get('/profile', async (req, res) => {
+//   try {
+//       const userData = await User.findByPk(req.session.user_id, {
+//           attributes: { exclude: ['password'] },
+//           include: [{ model: Content, Resource }]
+//       });
+//       res.status(200).json(userData);
+//   } catch (err) {
+//       res.status(500).json(err);
+//   }
+// });
 
 
 router.get('/userloggedin', async (req, res) => {
@@ -74,20 +74,6 @@ router.get('/userloggedin', async (req, res) => {
       res.status(500).json(err);
   }
 });
-
-
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.redirect('/')
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
-
 
 
 
@@ -106,6 +92,17 @@ router.delete('/:id', async (req, res) => {
       res.status(200).json(userData);
   } catch (err) {
       res.status(500).json(err);
+  }
+});
+
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.redirect('/')
+   
+    });
+  } else {
+    res.status(404).end();
   }
 });
 
