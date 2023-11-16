@@ -16,7 +16,7 @@ const Blog = sequelize.define('Blog',
     },
     post_heading: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     post_body: {
       type: DataTypes.STRING,

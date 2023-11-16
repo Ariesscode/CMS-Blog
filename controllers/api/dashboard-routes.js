@@ -39,72 +39,6 @@ router.get('/', withAuth, async (req, res) => {
 
 
 
-// router.get('/', withAuth, async (req, res) => { //check
-//   const logged_in = req.session.logged_in;
-
-//   // Define an async function to retrieve the username
-//   async function getUsernameByUserId(userId) {
-//     try {
-//       const user = await User.findByPk(userId); // Find the user by primary key (user_id)
-
-//       if (!user) {
-//         // User not found
-//         return null;
-//       }
-
-//       return user.username; // Return the username
-//     } catch (error) {
-//       console.error('Error fetching username:', error);
-//       throw error;
-//     }
-//   }
-
-//   // Usage
-//   const sessionUserId = await req.session.user_id;
-
-//   const userIdFromDB = await getUsernameByUserId(sessionUserId)
-//     .then((username) => {
-//       if (username) {
-//         console.log('Username:', username);
-//         return username;
-//       } else {
-//         console.log('User not found.');
-//       }
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//     });
-
-//   console.log(userIdFromDB)
-//   res.render('dashboard', { logged_in, userIdFromDB });
-// });
-  
-
-
-// router.get('/', withAuth, async (req, res) => {
-//   try {
-//     const logged_in = req.session.logged_in;
-//     const sessionUserId = req.session.user_id;
-
-//     const userData = await User.findByPk(sessionUserId, {
-//       include: [
-//         {
-//           model: Blog,
-//           attributes: ['id', 'post_heading', 'post_body', 'post_date'],
-//         },
-//       ],
-//     });
-
-//     // const username = userData.username;
-//     const userPosts = userData.blogs;
-
-//     res.render('dashboard', { logged_in, userPosts });
-//   } catch (err) {
-//     console.error('Error:', err);
-//     res.status(500).json(err);
-//   }
-// });
-
 router.get('/:id', withAuth, async (req, res) =>{
     try {
         const contentData = await Blog.findByPk(req.params.id, {
@@ -123,20 +57,27 @@ router.get('/:id', withAuth, async (req, res) =>{
 });
 
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/api/users/dashboard', withAuth, async (req, res) => {
     try {
+      const logged_in = req.session.logged_in;
+
       const newContent = await Blog.create({
         ...req.body,
+        blog_id: req.params.blog_id,
         user_id: req.session.user_id,
         title: req.body.post_heading,
         text: req.body.post_body,
       });
-  
-      res.status(200).json(newContent);
+      res.status(200).json({
+        newContent,
+        message: 'Post added!',
+      });
     } catch (err) {
       res.status(400).json(err);
     }
   });
+
+
 router.put('/:id', withAuth, async (req, res) =>{
     try {
         const contentData = await Blog.update(req.body, {

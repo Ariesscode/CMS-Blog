@@ -9,6 +9,7 @@ const hbs = exphbs.create({helpers: helpers, defaultLayout: 'main', runtimeOptio
   allowProtoPropertiesByDefault: true,
 }, });
 const path = require('path');
+const bodyParser = require('body-parser');
 const apiRoutes = require('./controllers/api');
 const sequelize = require('./config/connection');
 const withAuth = require('./utils/auth');
@@ -17,7 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
