@@ -9,7 +9,7 @@
     <div class="comment-form">
       <h3>Add a Comment</h3>
       <form id="comment-form" action="/comment/{{this.blog_id}}" method="POST">
-        <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
+        <textarea id="comment" name="comment" placeholder="Your comment here" rows="4"></textarea>
        {{#if logged_in}}
         <button type="submit">Post Comment</button>
       {{else}}
