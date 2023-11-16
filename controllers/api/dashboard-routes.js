@@ -69,6 +69,7 @@ router.post('/api/users/dashboard', withAuth, async (req, res) => {
         text: req.body.post_body,
       });
       res.status(200).json({
+        logged_in,
         newContent,
         message: 'Post added!',
       });
