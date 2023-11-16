@@ -44,30 +44,30 @@ router.get('/', withAuth, async (req, res) => { //check
   
 
 
-// router.get('/posthistory', async (req, res) => {
-//     try {
-//       // Fetch the user's posts from the database
-    
-//       const userPosts = await User.findAll({
-//         where: {
-//           user_id: req.session.user_id,
-//         },
-//         attributes: ['id', 'post_heading', 'post_body', 'post_date'], 
-//         include: [
-//           {
-//             model: User,
-//             attributes: ['username'], 
-//           },
-//         ],
-//       });
-//       const sessionUserId = req.session.user_id;
-//       const logged_in = !!req.session.user_id;
-//       res.render('dashboard', { userPosts, logged_in, sessionUserId }); 
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-  
+router.get('/posthistory', async (req, res) => {
+  try {
+   
+      const userPosts = await Blog.findAll({
+        where: {
+          user_id: req.session.user_id,
+     },
+        attributes: ['id', 'post_heading', 'post_body', 'post_date'], 
+       include: [
+          {
+         model: User,
+           attributes: ['username'], 
+         },
+        ],
+     });
+     const sessionUserId = req.session.user_id;
+  const logged_in = !!req.session.user_id;
+     res.render('dashboard', { userPosts, logged_in, sessionUserId }); 
+    console.log(userPosts)
+   } catch (err) {
+     res.status(500).json(err);
+    }
+  });
+ 
 
 router.get('/:id', withAuth, async (req, res) =>{
     try {
