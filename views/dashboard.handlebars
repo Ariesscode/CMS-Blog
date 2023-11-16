@@ -15,31 +15,31 @@
     </div>
     <button type="button" id="create-post-button">Create Post</button>
   </form>
-  <div class="post-history">
-    <h2>Post history:</h2>
-    <table class="table">
-      <thead class="table-success">
+ <div class="post-history">
+  <h2>Post history:</h2>
+  <table class="table">
+    <thead class="table-success">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Date created</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userPosts}}
         <tr>
-          <th scope="col">Date created</th>
-          <th scope="col">Title</th>
-          <th scope="col">Content</th>
-          <th scope="col"></th>
+          <th scope="row">{{id}}</th>
+          <td>{{post_date}}</td>
+          <td>{{post_heading}}</td>
+          <td>{{post_body}}</td>
+          <td>
+            <a href="/dashboard/edit/{{id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
+            <a href="/dashboard/delete/{{id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {{#each userPosts}}
-          <tr>
-            <th scope="row">{{id}}</th>
-            <td>{{post_date}}</td>
-            <td>{{post_heading}}</td>
-            <td>{{post_body}}</td>
-            <td>
-              <a href="/dashboard/edit/{{id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
-              <a href="/dashboard/delete/{{id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
