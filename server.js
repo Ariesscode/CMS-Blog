@@ -4,7 +4,10 @@ const session = require('express-session');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({helpers: helpers, defaultLayout: 'main' });
+const hbs = exphbs.create({helpers: helpers, defaultLayout: 'main', runtimeOptions: {
+  allowProtoMethodsByDefault: true,
+  allowProtoPropertiesByDefault: true,
+}, });
 const path = require('path');
 const apiRoutes = require('./controllers/api');
 const sequelize = require('./config/connection');

@@ -4,7 +4,7 @@
        {{#if logged_in}}
         <div class="row align-center mb-5">
           <div class="col-md-6">
-            <h2>{{get_emoji}} {{userIdFromDB}}</h2>
+            <h2>{{get_emoji}} {{username}}</h2>
           </div>
        </div>
     {{/if}}
@@ -29,17 +29,17 @@
     </thead>
     <tbody>
       {{#each userPosts}}
-        <tr>
-          <th scope="row">{{id}}</th>
-          <td>{{post_date}}</td>
-          <td>{{post_heading}}</td>
-          <td>{{post_body}}</td>
-          <td>
-            <a href="/dashboard/edit/{{id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
-            <a href="/dashboard/delete/{{id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
-          </td>
-        </tr>
-      {{/each}}
+  <tr>
+    <th scope="row">{{#if this.id}}{{this.id}}{{/if}}</th>
+    <td>{{#if this.post_date}}{{this.post_date}}{{/if}}</td>
+    <td>{{#if this.post_heading}}{{this.post_heading}}{{/if}}</td>
+    <td>{{#if this.post_body}}{{this.post_body}}{{/if}}</td>
+    <td>
+      <a href="/dashboard/edit/{{this.id}}" class="edit-post btn"><i class="bi bi-pencil-square"></i></a>
+      <a href="/dashboard/delete/{{this.id}}" class="delete-post btn"><i class="bi bi-trash"></i></a>
+    </td>
+  </tr>
+{{/each}}
     </tbody>
   </table>
 </div>
