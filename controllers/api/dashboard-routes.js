@@ -58,25 +58,32 @@ router.get('/:id', withAuth, async (req, res) =>{
 
 
 router.post('/', withAuth, async (req, res) => {
-    try {
-      const logged_in = req.session.logged_in;
+  try {
+    const { title, text } = req.body;
+    if ('user_id' in req.session) {
+      const { user_id, user_name } = req.session;
 
+      const dbUserData = await User.findByPk(user_id);
+     
       const newContent = await Blog.create({
-        ...req.body,
-        blog_id: req.params.blog_id,
-        user_id: req.session.user_id,
-        title: req.body.post_heading,
-        text: req.body.post_body,
+        user_id,
+        user_name: dbUserData.username,
+        post_heading: title,
+        post_body: text,
+        
       });
-      res.status(200).json({
-        logged_in,
-        newContent,
-        message: 'Post added!',
-      });
-    } catch (err) {
-      res.status(400).json(err);
+
+      res.render('home', {newContent});
+      console.log('newContent:', newContent);
+
+      // res.send('Post added!');
+    } else {
+      res.status(400).send('User session information incomplete.');
     }
-  });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 
 router.put('/:id', withAuth, async (req, res) =>{
