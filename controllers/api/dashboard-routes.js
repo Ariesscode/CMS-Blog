@@ -57,7 +57,7 @@ router.get('/:id', withAuth, async (req, res) =>{
 });
 
 
-router.post('/api/users/dashboard', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
       const logged_in = req.session.logged_in;
 
