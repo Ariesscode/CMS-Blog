@@ -31,7 +31,7 @@
       {{#each userPosts}}
   <tr>
     <th scope="row">{{#if this.id}}{{this.id}}{{/if}}</th>
-    <td>{{#if this.post_date}}{{this.post_date}}{{/if}}</td>
+    <td>{{#if this.post_date}}{{format_date this.post_date}}{{/if}}</td>
     <td>{{#if this.post_heading}}{{this.post_heading}}{{/if}}</td>
     <td>{{#if this.post_body}}{{this.post_body}}{{/if}}</td>
     <td>
