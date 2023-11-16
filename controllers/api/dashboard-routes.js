@@ -73,7 +73,7 @@ router.post('/', withAuth, async (req, res) => {
         
       });
 
-      res.render('home', {newContent});
+      res.redirect('/dashboard?message=Post added!')
       console.log('newContent:', newContent);
 
       // res.send('Post added!');
