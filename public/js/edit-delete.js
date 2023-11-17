@@ -1,8 +1,10 @@
 
-document.querySelector('.deleteBtn').addEventListener('click', function () {
-    const postIdToDelete = this.dataset.postId;
-    deletePost(postIdToDelete);
-   
+document.body.addEventListener('click', function (event) {
+    if (event.target.matches('.deleteBtn')) {
+        const postIdToDelete = event.target.dataset.postId;
+
+        deletePost(postIdToDelete);
+    }
 });
 async function deletePost(id) {
     try {
