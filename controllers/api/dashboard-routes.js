@@ -86,7 +86,7 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 
-router.put('/edit/:id', withAuth, async (req, res) =>{
+router.put('/:id', withAuth, async (req, res) =>{
     try {
         const contentData = await Blog.update(req.body, {
             where: {id: req.params.id}
@@ -101,24 +101,24 @@ router.put('/edit/:id', withAuth, async (req, res) =>{
     }
 });
 
-// router.delete('/:id', withAuth, async (req, res) => {
-//   try {
-//       const contentData = await Blog.destroy({
-//           where: { id: req.params.id }
-//       });
-//       if (!contentData) {
-//           res.status(404).json({ message: 'No content found with this id!' });
-//           return;
-//       }
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+      const contentData = await Blog.destroy({
+          where: { id: req.params.id }
+      });
+      if (!contentData) {
+          res.status(404).json({ message: 'No content found with this id!' });
+          return;
+      }
 
-//       res.redirect('/dashboard');
+      res.redirect('/dashboard');
 
-//   } catch (err) {
-//       res.status(500).json(err);
-//   }
+  } catch (err) {
+      res.status(500).json(err);
+  }
 
   
 
-// });
+});
 
     module.exports = router

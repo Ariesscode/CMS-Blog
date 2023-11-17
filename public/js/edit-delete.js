@@ -1,26 +1,24 @@
-function deletePost(id) {
- 
+async function deletePost(id) {
 
-    const response = fetch('/api/dashboard/'+ id, {
+    const response = await fetch('http://localhost:3001/api/dashboard/'+ id, {
         method: 'DELETE',
     })
     if (response.ok) {
         console.log('Post has been deleted');
-        document.location.replace('/api/dashboard');
+        document.location.replace('/dashboard');
     } else {
+        console.log(response)
         console.error('Post could not be deleted.');
     }
 }
-
 function editPost(id) {
     const response = fetch('/api/dashboard/'+ id, {
-        method: 'DELETE',
+        method: 'PUT',
     })
     if (response.ok) {
         console.log('Post has been edited');
-        //Reloads the page to show the post has been edited
-        document.location.replace('/api/dashboard');
-    } else {
+        document.location.replace('/');    
+     } else {
         console.error('Post could not be edited.');
     }
 }
