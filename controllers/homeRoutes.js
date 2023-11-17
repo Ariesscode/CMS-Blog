@@ -3,6 +3,7 @@ const blogPrePost = require("../pre-blogData");
 const Comment = require("../models/comment");
 const Blog = require("../models/blog");
 const User = require("../models/user");
+const withAuth = require('../utils/auth');
 // const withAuth = require('../utils/auth');
 
 router.get("/", async (req, res) => {
@@ -25,6 +26,8 @@ res.render('all', { blogPrePost, blogData, blogPosts, logged_in });
 router.get("/login", async (req, res) => {
   res.render("login");
 });
+
+
 
 
  module.exports = router;

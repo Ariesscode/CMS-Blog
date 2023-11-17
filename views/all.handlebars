@@ -1,4 +1,4 @@
-<div class="pre-post">  <!--this is pulling from a file/ harcoded from array -->
+{{!-- <div class="pre-post">  <!--this is pulling from a file/ harcoded from array -->
   {{#each blogPrePost}}
   <div class="post-heading">
     <h2>{{this.post_heading}}</h2>
@@ -8,14 +8,10 @@
     <p>{{this.post_body}}</p>
     <div class="comment-form">
       <h3>Add a Comment</h3>
-      <form id="comment-form" action="/comment/{{this.blog_id}}" method="POST">
-        <textarea id="comment" name="comment" placeholder="Your comment here" rows="4"></textarea>
-       {{#if logged_in}}
-        <button type="submit">Post Comment</button>
-      {{else}}
-        <p>Please <a href="/login">login</a> to add a comment.</p>
-        {{/if}}
-      </form>
+  <form action="/api/blog/{{id}}" method="POST">
+    <textarea name="comment" placeholder="Your comment here" rows="4"></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
     </div>
     <div class="comment-section">
       <h3>Comments</h3>
@@ -32,7 +28,7 @@
     </div>
   </div>
   {{/each}}
-</div>
+</div> --}}
 
  <div class="blog-posts">  <!--this is pulling from mysql database HELP -->
   {{#each blogPosts}}
@@ -44,14 +40,11 @@
     <p>{{post_body}}</p>
     <div class="comment-form">
       <h3>Add a Comment</h3>
-      <form id="comment-form" action="/comment/{{this.blog_id}}" method="POST">
-        <textarea id="comment-text" placeholder="Your comment here" rows="4"></textarea>
-       {{#if logged_in}}
-        <button type="submit">Post Comment</button>
-      {{else}}
-        <p>Please <a href="/login">login</a> to add a comment.</p>
-        {{/if}}
-      </form>
+     
+  <form action="/api/blog/{{id}}" method="POST">
+    <textarea name="comment" placeholder="Your comment here" rows="4"></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
     </div>
     <div class="comment-section">
       <h3>Comments</h3>

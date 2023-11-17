@@ -8,28 +8,26 @@ const withAuth = require('../../utils/auth');
 
 
  
-router.post('/', withAuth, async (req, res) => {
+router.post('/:id', withAuth, async (req, res) => {
     try {
       const { comment } = req.body;
     if ('user_id' in req.session) {
       const { user_id, user_name } = req.session;
+      const logged_in = req.session.logged_in
 
       const dbUserData = await User.findByPk(user_id);
      
       const newComment = await Comment.create({
         ...req.body,
         user_id,
-        blog_id: req.params.blog_id,
+        blog_id: req.params.id,
         user_name: dbUserData.username,
         comment: comment
         
       });
-      const logged_in = true;
-      res.status(200).json({
-        newComment,
-        logged_in,
-      })
-      return res.redirect('/');
+  
+       res.redirect('/?message=comment Added!');
+       console.log('newComment:', newComment);
     } else {
       res.status(400).send('Comment could not be added. Please try again.');
     }
