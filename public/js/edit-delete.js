@@ -17,7 +17,7 @@ async function editPost(id) {
     })
     if (response.ok) {
         console.log('Post has been edited');
-        document.location.replace('/');    
+        document.location.replace('/dashboard');    
      } else {
         console.error('Post could not be edited.');
     }
