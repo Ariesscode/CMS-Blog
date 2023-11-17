@@ -1,3 +1,17 @@
+
+document.body.addEventListener('click', function (event) {
+  if (event.target.matches('.loginBtn')) {
+    loginFormHandler(event);
+  }
+      
+    if(event.target.matches('.signUpBtn')) {
+      signupFormHandler(event);
+    }
+    if(event.target.matches('#register-link')) {
+      toggleForms(event);
+    }
+  });
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -40,10 +54,9 @@ const signupFormHandler = async (event) => {
     }
   }
 };
-document.addEventListener('DOMContentLoaded', function() {
+
 const loginForm = document.getElementById('login-form');
   const signupForm = document.getElementById('signup-form');
-  const toggleButton = document.getElementById('register-link');
 
   // Function to toggle between login and register forms
   function toggleForms() {
@@ -55,16 +68,15 @@ const loginForm = document.getElementById('login-form');
       loginForm.style.display = 'none';
       signupForm.style.display = 'block';
     }
-  }
+  };
 
-  // Add a click event listener to the button
-  toggleButton.addEventListener('click', toggleForms);
+  // toggleButton.addEventListener('click', toggleForms);
 
-});
-document
-  .querySelector('.loginBtn')
-  .addEventListener('click', loginFormHandler);
 
-document
-  .querySelector('.signUpBtn')
-  .addEventListener('click', signupFormHandler);
+// document
+//   .querySelector('.loginBtn')
+//   .addEventListener('click', loginFormHandler);
+
+// document
+//   .querySelector('.signUpBtn')
+//   .addEventListener('click', signupFormHandler);
