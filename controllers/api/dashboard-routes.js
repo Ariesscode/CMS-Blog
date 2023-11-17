@@ -111,7 +111,7 @@ router.delete('/:id', withAuth, async (req, res) => {
           return;
       }
 
-      res.redirect('/dashboard');
+      res.redirect('/');
 
   } catch (err) {
       res.status(500).json(err);

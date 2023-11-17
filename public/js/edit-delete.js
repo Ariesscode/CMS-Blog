@@ -5,7 +5,7 @@ async function deletePost(id) {
     })
     if (response.ok) {
         console.log('Post has been deleted');
-        document.location.replace('/dashboard');
+        document.location.replace('/api/dashboard');
     } else {
         console.log(response)
         console.error('Post could not be deleted.');
@@ -17,7 +17,7 @@ async function editPost(id) {
     })
     if (response.ok) {
         console.log('Post has been edited');
-        document.location.replace('/dashboard');    
+        document.location.replace('/api/dashboard');    
      } else {
         console.error('Post could not be edited.');
     }
