@@ -5,6 +5,12 @@ document.body.addEventListener('click', function (event) {
 
         deletePost(postIdToDelete);
     }
+
+    if (event.target.matches('.editBtn')) {
+        const postIdToEdit = event.target.dataset.postId;
+
+        deletePost(postIdToEdit);
+    }
 });
 async function deletePost(id) {
     try {
@@ -28,17 +34,25 @@ async function deletePost(id) {
     }
 }
 
-// async function editPost(id) {
-//     const response = await fetch(`/dashboard/${id}`, {
-//         method: 'PUT',
-//     })
-//     if (response.ok) {
-//         console.log('Post has been edited');
-//         // window.location.replace('/api/dashboard');   
-//         return;
-//      } else {
-//         console.error('Post could not be edited.');
-//     }
-// }
+async function editPost(id) {
+    try {
+        console.log('Edit post with id:', id);
 
+        const response = await fetch(`/api/dashboard/${id}`, {
+            method: 'PUT',
+        });
+
+        if (response.ok) {
+            console.log('Editing post with id:', id);
+            window.location.replace('/api/dashboard');
+
+            console.log('Post has been updated');
+           
+        } else {
+            console.error('Error updating post:', response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error('Error updating post:', error);
+    }
+}
 
