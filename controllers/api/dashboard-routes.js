@@ -103,22 +103,28 @@ router.put('/:id', withAuth, async (req, res) =>{
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
+    console.log('Deleting post with id number:', req.params.id);
       const contentData = await Blog.destroy({
           where: { id: req.params.id }
+          
       });
+
       if (!contentData) {
+        console.log('No content found with id number:', req.params.id);
+
           res.status(404).json({ message: 'No content found with this id!' });
           return;
       }
+      console.log('Post deleted successfully:', req.params.id);
 
-      res.redirect('/');
+      res.render('dashboard');
 
   } catch (err) {
       res.status(500).json(err);
+      console.error('Error deleting post:', err);
+
   }
-
-  
-
 });
+
 
     module.exports = router

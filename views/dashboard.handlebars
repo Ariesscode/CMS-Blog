@@ -41,8 +41,8 @@
           <td>{{#if this.post_heading}}{{this.post_heading}}{{/if}}</td>
           <td>{{#if this.post_body}}{{this.post_body}}{{/if}}</td>
           <td>
-            <a href="#" class="edit-post btn" onclick="editPost('{{this.id}}')"><i class="bi bi-pencil-square"></i></a>
-            <a href="#" class="delete-post btn" onclick="deletePost('{{this.id}}')"><i class="bi bi-trash"></i></a>
+            <a href="#" class="edit-post btn" onclick="editPost('{{this.id}}')" data-post-id="123"><i class="bi bi-pencil-square editBtn"></i></a>
+            <a href="#" class="delete-post btn" onclick="deletePost('{{this.id}}')" data-post-id="123"><i class="bi bi-trash deleteBtn"></i></a>
           </td>
           </td>
         </tr>
