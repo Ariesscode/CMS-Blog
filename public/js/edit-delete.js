@@ -11,8 +11,8 @@ async function deletePost(id) {
         console.error('Post could not be deleted.');
     }
 }
-function editPost(id) {
-    const response = fetch('/api/dashboard/'+ id, {
+async function editPost(id) {
+    const response = await fetch('http://localhost:3001/api/dashboard/'+ id, {
         method: 'PUT',
     })
     if (response.ok) {
