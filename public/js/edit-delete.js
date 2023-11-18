@@ -9,7 +9,7 @@ document.body.addEventListener('click', function (event) {
     if (event.target.matches('.editBtn')) {
         const postIdToEdit = event.target.dataset.postId;
         editPost(postIdToEdit);
-        fetchUserPosts(postIdToEdit);
+        // fetchUserPosts(postIdToEdit);
     }
    
 });
@@ -35,11 +35,34 @@ async function deletePost(id) {
     }
 }
 
+async function editPost(postIdToEdit) {
+    
+    try {
+        document.getElementById('create-post-button').innerText = 'Edit Post';
+
+
+        const post = userPosts.findOne(post => post.id === postIdToEdit);
+        console.log(userPosts)
+
+        if (post) {
+            console.log(post);
+            document.querySelector(".title").value = post.title;
+            document.querySelector(".text").value = post.text;
+
+            document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
+        } else {
+            console.error('Post not found in user\'s post history.');
+        }
+    } catch (error) {
+        console.error('Error editing post:', error);
+    }
+}
+
 async function editPost(id) {
     try {
         console.log(id);
         const response = await fetch(`/api/dashboard/${id}`, {
-            method: 'PUT',
+            method: 'GET',
         }); 
 
         if (response.ok) {
@@ -56,29 +79,28 @@ async function editPost(id) {
         
     }
 }
-async function fetchUserPosts(postIdToEdit) {
+// // async function editPost(postIdToEdit) {
     
-    try {
-        document.getElementById('create-post-button').innerText = 'Edit Post';
+//     try {
+//         document.getElementById('create-post-button').innerText = 'Edit Post';
 
-        const userPosts = await editPost(postIdToEdit);
 
-        const post = userPosts.find(post => post.id === postIdToEdit);
-        console.log(userPosts)
+//         const post = userPosts.findOne(post => post.id === postIdToEdit);
+//         console.log(userPosts)
 
-        if (post) {
-            console.log(post);
-            document.querySelector(".title").value = post.title;
-            document.querySelector(".text").value = post.text;
+//         if (post) {
+//             console.log(post);
+//             document.querySelector(".title").value = post.title;
+//             document.querySelector(".text").value = post.text;
 
-            document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
-        } else {
-            console.error('Post not found in user\'s post history.');
-        }
-    } catch (error) {
-        console.error('Error editing post:', error);
-    }
-}
+//             document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
+//         } else {
+//             console.error('Post not found in user\'s post history.');
+//         }
+//     } catch (error) {
+//         console.error('Error editing post:', error);
+//     }
+// }
 
 
 
