@@ -1,4 +1,5 @@
 
+const createPostButton = document.querySelector("#create-post-button");
 
 document.body.addEventListener('click', function (event) {
     if (event.target.matches('.deleteBtn')) {
@@ -39,7 +40,6 @@ async function deletePost(id) {
 
 async function editPost(postIdToEdit) {
     console.log('Starting editPost with postIdToEdit:', postIdToEdit);
-    document.querySelector('.editBtn').addEventListener('click', () => editPost(postIdToEdit));
     try {
 
         console.log('Making GET request for post with ID:', postIdToEdit);
@@ -55,8 +55,9 @@ async function editPost(postIdToEdit) {
             document.querySelector(".input-title").value = post.post_heading;
             document.querySelector(".input-text").value = post.post_body;
 
-            document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
-            document.querySelector("#create-post-button").innerText = 'Edit Post';
+            createPostButton.setAttribute("data-edit", postIdToEdit);
+            createPostButton.innerText = 'Edit Post';
+            createPostButton.addEventListener('click', updatePost);
 
         } else {
             console.error('Failed to fetch user post for editing.');
@@ -66,7 +67,42 @@ async function editPost(postIdToEdit) {
     }
 }
 
+    async function updatePost() {
+        try {
+            const title = document.querySelector(".input-title").value
+            const text = document.querySelector(".input-text").value
+            const postId = createPostButton.getAttribute('data-edit')
+            console.log('Editing post with id:', postId);
+    
+            const response = await fetch(`/api/dashboard/${postId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    post_heading: title,
+                    post_body: text,
+                    postId: postId,
+                  }),
+                });
+        
+                if (response.ok) {
+                  console.log('Post updated successfully');
+                  res.redirect('/');
+                } else {
+                  console.error('Error updating post:', response.status, response.statusText);
+                }
+              
+        
+            
+        } catch (error) {
+            console.error('Error updating post:', error);
+            res.status(500).json({ message: 'Internal Server Error' });
+          }
+        }
+    
+    
 
 
 
-
+// document.querySelector('.editBtn').addEventListener('click', () => editPost(postIdToEdit));

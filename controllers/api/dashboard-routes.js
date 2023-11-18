@@ -85,19 +85,22 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.put('/:id', withAuth, async (req, res) => {  //when user clicks edit button, it will populate the form with that posts content and update it 
+router.put('/:id', withAuth, async (req, res) => {   
   try {
     console.log('Received PUT request:', req.params.id, req.body);
 
     const updatedPost = await Blog.update(
       {
-        post_heading: req.body.title,
-        post_body: req.body.text,
+        post_heading: title,
+        post_body: text,
       },
       {
-        where: { id: req.params.id },
+        where: {
+          id: postId, 
+        },
       }
     );
+    
 
     console.log('Updated post:', updatedPost);
 
