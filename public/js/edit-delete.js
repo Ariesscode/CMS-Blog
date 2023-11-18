@@ -6,9 +6,13 @@ document.body.addEventListener('click', function (event) {
 
         deletePost(postIdToDelete);
     }
+    // if (event.target.matches('.editBtn')) {
+    //     const postIdToDelete = event.target.dataset.postId;
 
-   
-   
+    //     editPost(postIdToDelete);
+    // }
+
+
 });
 async function deletePost(id) {
     try {
@@ -23,7 +27,7 @@ async function deletePost(id) {
             window.location.replace('/api/dashboard');
 
             console.log('Post has been deleted');
-           
+
         } else {
             console.error('Error deleting post:', response.status, response.statusText);
         }
@@ -35,14 +39,14 @@ async function deletePost(id) {
 
 async function editPost(postIdToEdit) {
     console.log('Starting editPost with postIdToEdit:', postIdToEdit);
-
+    document.querySelector('.editBtn').addEventListener('click', () => editPost(postIdToEdit));
     try {
 
         console.log('Making GET request for post with ID:', postIdToEdit);
 
         const response = await fetch('/api/dashboard/' + postIdToEdit, {
             method: 'GET', // Use 'GET' to retrieve the post data
-        }); 
+        });
 
         if (response.ok) {
             const post = await response.json();
@@ -66,4 +70,3 @@ async function editPost(postIdToEdit) {
 
 
 
-document.querySelector('.editBtn').addEventListener('click', editPost)
