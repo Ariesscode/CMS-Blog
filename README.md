@@ -1,10 +1,53 @@
-# 14 Model-View-Controller (MVC): Tech Blog
+# 14 Model-View-Controller CMS BLOG APP
 
 ## Your Task
 
-Writing about tech can be just as important as making it. Developers spend plenty of time creating new applications and debugging existing codebases, but most developers also spend at least some of their time reading and writing about technical concepts, recent advancements, and new technologies. A simple Google search for any concept covered in this course returns thousands of think pieces and tutorials from developers of all skill levels!
+CMS Blog App gives users the opportunity to share blog posts with one another. Each user willl be able to create an account and sign in with their login credentials. The bycrypt package https://www.npmjs.com/package/bcrypt makes the user's password secure and unreadable so that potential hackers are not able to login with their credentials. Anyone viewing the app will be able to see all of the different user's posts, but only user's that are logged in will be able to interact with blog posts, such ass leaving a comment, updating posts, removing content, and lots more. One functionality that will be added in the future are updating passwords if a user forget their login password or email. This will make it more accessible for users, so that they continue to use the app. If the user tries to leave a comment or continue to scope the app, such ass viewing the dashboard view, it will redirect the user to the register or login page. Once the user is logged in, then they will be able to use the workbench page known as the dashboard to create posts, update, delete and view their recent created posts. The post history table keeps track of any new posts that have been added or updated, including the date they made any changes. Users have unique usernames, so that when a user leaves a comment under a post, the username of the user and their comment will show on blog page. Another functionality that will be added is a profile page, which will contain the users email, image of the user, and a image uploader system for users to be able to upload profile pictures and images for posts created. Any post that is created, updated, deleted, or is shown in the post history table and blog page are fetched from the MYSQL database [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a MySQL database for your Models, and create an Express.js API for the controllers. Each model is set to have different properties that are used in the handlebar views template created [express-handlebars](https://www.npmjs.com/package/express-handlebars) to render different data from the database. A [dotenv package](https://www.npmjs.com/package/dotenv) to use environment variables, and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) packages to add authentication and to keep private sessions and passwords hidden from view in client side. 
 
-Your task this week is to build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. You’ll build this site completely from scratch and deploy it to Heroku. Your app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+--Follow Steps below , then Register as a NEW USER or use pre-logins:
+
+"email": calebM@email.com
+"password": basketball42
+
+"email": karina127@email.com
+"password": suspenders78
+
+
+
+## GET STARTED 
+-Set up your connection js file to connect to the MYSQL database :
+require('dotenv').config();
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.MYSQL_URL);
+module.exports = sequelize;
+**We will use dotenv to make sure our sensitive information is not in plain view**
+-set up your database enviornment variables :
+MYSQL_URL =mysql://root:docker@localhost:3306/user_db
+DB_NAME =user_db
+DB_USER =root
+DB_PASSWORD =
+SESSION_SECRET = 
+**Make sure to add your password and session secret password**
+-After you have created those files, install all dependencies :
+npm i
+-After you have installed all dependencies:
+npm run seeds
+npm start 
+**Notification in terminal that you are listening on PORT 3001**
+Go to browser and type localhost 3001 
+**Dependencies you should have downloaded** : 
+
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.2",
+    "sequelize": "^6.33.0"
+
+
+
 
 ## User Story
 
@@ -58,75 +101,3 @@ The following animation demonstrates the application functionality:
 
 ![Animation cycles through signing into the app, clicking on buttons, and updating blog posts.](./Assets/14-mvc-homework-demo-01.gif) 
 
-## Getting Started
-
-Your application’s folder structure must follow the Model-View-Controller paradigm. You’ll need to use the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views, use the [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a MySQL database for your Models, and create an Express.js API for your Controllers.
-
-You’ll also need the [dotenv package](https://www.npmjs.com/package/dotenv) to use environment variables, the [bcrypt package](https://www.npmjs.com/package/bcrypt) to hash passwords, and the [express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) packages to add authentication.
-
-**Note**: The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session. This is the default behavior and you do not have to do anything to your application other than implement the npm package.
-
-## Grading Requirements
-
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-    * Application’s folder structure follows the Model-View-Controller paradigm.
-
-    * Uses the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views.
-
-    * Application must be deployed to Heroku.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* User experience is intuitive and easy to navigate.
-
-* User interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
