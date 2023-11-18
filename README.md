@@ -1,4 +1,6 @@
 # 14 Model-View-Controller CMS BLOG APP
+GitHub : https://github.com/Ariesscode/CMS-Blog
+Deployed app: 
 
 ## Your Task
 

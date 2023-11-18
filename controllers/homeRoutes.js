@@ -8,7 +8,7 @@ const withAuth = require('../utils/auth');
 
 router.get("/", async (req, res) => {
  
-  const blogData = await Blog.findAll({
+  const blogData = await Blog.findAll({  //retirves all of different user posts and comments on blog page, users logged in can comment 
     include: [
       {
         model: Comment,
