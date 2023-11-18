@@ -6,11 +6,12 @@ document.body.addEventListener('click', function (event) {
         deletePost(postIdToDelete);
     }
 
-    if (event.target.matches('.editBtn')) {
-        const postIdToEdit = event.target.dataset.postId;
-        editPost(postIdToEdit);
-        // fetchUserPosts(postIdToEdit);
-    }
+    // if (event.target.matches('.editBtn')) {
+    //     const postIdToEdit = event.target.dataset.postId;
+    //     editPost(postIdToEdit);
+    //     console.log('Making GET request for post with ID #:', postIdToEdit);
+
+    // }
    
 });
 async function deletePost(id) {
@@ -35,51 +36,58 @@ async function deletePost(id) {
     }
 }
 
+
 async function editPost(postIdToEdit) {
-    
+    console.log('Starting editPost with postIdToEdit:', postIdToEdit);
+
     try {
-        document.getElementById('create-post-button').innerText = 'Edit Post';
 
+        console.log('Making GET request for post with ID:', postIdToEdit);
 
-        const post = userPosts.findOne(post => post.id === postIdToEdit);
-        console.log(userPosts)
-
-        if (post) {
-            console.log(post);
-            document.querySelector(".title").value = post.title;
-            document.querySelector(".text").value = post.text;
-
-            document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
-        } else {
-            console.error('Post not found in user\'s post history.');
-        }
-    } catch (error) {
-        console.error('Error editing post:', error);
-    }
-}
-
-async function editPost(id) {
-    try {
-        console.log(id);
-        const response = await fetch(`/api/dashboard/${id}`, {
-            method: 'GET',
+        const response = await fetch('/api/dashboard/' + postIdToEdit, {
+            method: 'GET', // Use 'GET' to retrieve the post data
         }); 
 
         if (response.ok) {
-            const userPosts = await response.json();
-            console.log(userPosts);
-           return userPosts;
-           
+            const post = await response.json();
+            console.log(post);
+
+            document.querySelector(".input-title").value = post.post_heading;
+            document.querySelector(".input-text").value = post.post_body;
+
+            document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
         } else {
-            console.error('Failed to fetch user posts.');
-            
+            console.error('Failed to fetch user post for editing.');
         }
     } catch (error) {
-        console.error('Error fetching user posts:', error);
-        
+        console.error('Error fetching user post for editing:', error);
     }
 }
-// // async function editPost(postIdToEdit) {
+document.querySelector('.editBtn').addEventListener('click', editPost);
+
+
+// async function editPost(id) {
+//     try {
+//         console.log(id);
+//         const response = await fetch(`/api/dashboard/${id}`, {
+//             method: 'GET',
+//         }); 
+
+//         if (response.ok) {
+//             const userPosts = await response.json();
+//             console.log(userPosts);
+//            return userPosts;
+           
+//         } else {
+//             console.error('Failed to fetch user posts.');
+            
+//         }
+//     } catch (error) {
+//         console.error('Error fetching user posts:', error);
+        
+//     }
+//  }
+// async function editPost(postIdToEdit) {
     
 //     try {
 //         document.getElementById('create-post-button').innerText = 'Edit Post';

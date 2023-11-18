@@ -70,13 +70,4 @@ const loginForm = document.getElementById('login-form');
     }
   };
 
-  // toggleButton.addEventListener('click', toggleForms);
-
-
-// document
-//   .querySelector('.loginBtn')
-//   .addEventListener('click', loginFormHandler);
-
-// document
-//   .querySelector('.signUpBtn')
-//   .addEventListener('click', signupFormHandler);
+  

@@ -84,29 +84,36 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
 router.put('/:id', withAuth, async (req, res) => {
   try {
+      console.log('Received PUT request:', req.params.id, req.body);
+
       const updatedPost = await Blog.update(
           {
-            title: req.body.title,
-            text: req.body.text, 
-  
+            post_heading: req.body.title,
+            post_body: req.body.text, 
           },
           {
             where: { id: req.params.id },
           }
       );
-      console.log(updatedPost);
+
+      console.log('Updated post:', updatedPost);
 
       if (updatedPost[0] === 0) {
           return res.status(404).json({ message: 'No post found with this id!' });
       }
+
+      res.status(200).json({ message: 'Post updated successfully!' });
 
   } catch (error) {
       console.error('Error updating post:', error);
       res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+
 
 
 // router.put('/:id', withAuth, async (req, res) =>{
