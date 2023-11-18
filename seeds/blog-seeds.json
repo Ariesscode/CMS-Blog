@@ -12,7 +12,7 @@
       "id": 2,
       "user_name": "Karina127",
       "post_heading": "Web Development Best Practices",
-      "post_body": "In this post, we'll explore the best practices in web development, including responsive design, performance optimization, and security measures.",
+      "post_body": "Explore some web development practices, such as debugging, reading documents and understanding code.",
       "post_date": "11/02/2023",
       "user_id": 2
       
@@ -21,7 +21,7 @@
       "id": 3,
       "user_name": "Abby",
       "post_heading": "Data Management",
-      "post_body": "Data management is a critical aspect of software development. We'll discuss various database systems and their pros and cons.",
+      "post_body": "Data management is a critical aspect of software development. MYSQL, MONGO, NoSQL, Cloud are just some of the few databases used.",
       "post_date": "11/03/2023",
       "user_id": 1
   
