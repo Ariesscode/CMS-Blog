@@ -84,22 +84,48 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+      const updatedPost = await Blog.update(
+          {
+            where: { id: req.params.id },
+  
+          },
+          {
+            title: req.body.title,
+            text: req.body.text,          }
+      );
 
+      if (updatedPost[0] === 0) {
+          return res.status(404).json({ message: 'No post found with this id!' });
+      }
 
-router.put('/:id', withAuth, async (req, res) =>{
-    try {
-        const contentData = await Blog.update(req.body, {
-            where: {id: req.params.id}
-        });
-        if (!contentData) {
-            res.status(404).json({message: 'No content found with this id!'});
-            return;
-        }
-        res.status(200).json(contentData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
+      const updatedPostData = await Blog.find({
+          where: { id: req.params.id },
+      });
+
+      res.status(200).json(updatedPostData);
+  } catch (error) {
+      console.error('Error updating post:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
+
+
+// router.put('/:id', withAuth, async (req, res) =>{
+//     try {
+//         const contentData = await Blog.update(req.body, {
+//             where: {id: req.params.id}
+//         });
+//         if (!contentData) {
+//             res.status(404).json({message: 'No content found with this id!'});
+//             return;
+//         }
+//         res.status(200).json(contentData);
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {

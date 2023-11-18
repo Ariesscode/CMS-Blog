@@ -8,9 +8,10 @@ document.body.addEventListener('click', function (event) {
 
     if (event.target.matches('.editBtn')) {
         const postIdToEdit = event.target.dataset.postId;
-
-        deletePost(postIdToEdit);
+        editPost(postIdToEdit);
+        fetchUserPosts(postIdToEdit);
     }
+   
 });
 async function deletePost(id) {
     try {
@@ -36,23 +37,50 @@ async function deletePost(id) {
 
 async function editPost(id) {
     try {
-        console.log('Edit post with id:', id);
-
+        console.log(id);
         const response = await fetch(`/api/dashboard/${id}`, {
             method: 'PUT',
-        });
+        }); 
 
         if (response.ok) {
-            console.log('Editing post with id:', id);
-            window.location.replace('/api/dashboard');
-
-            console.log('Post has been updated');
+            const userPosts = await response.json();
+            console.log(userPosts);
+           return userPosts;
            
         } else {
-            console.error('Error updating post:', response.status, response.statusText);
+            console.error('Failed to fetch user posts.');
+            
         }
     } catch (error) {
-        console.error('Error updating post:', error);
+        console.error('Error fetching user posts:', error);
+        
     }
 }
+async function fetchUserPosts(postIdToEdit) {
+    
+    try {
+        document.getElementById('create-post-button').innerText = 'Edit Post';
+
+        const userPosts = await editPost(postIdToEdit);
+
+        const post = userPosts.find(post => post.id === postIdToEdit);
+        console.log(userPosts)
+
+        if (post) {
+            console.log(post);
+            document.querySelector(".title").value = post.title;
+            document.querySelector(".text").value = post.text;
+
+            document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
+        } else {
+            console.error('Post not found in user\'s post history.');
+        }
+    } catch (error) {
+        console.error('Error editing post:', error);
+    }
+}
+
+
+
+
 
