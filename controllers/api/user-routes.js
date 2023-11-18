@@ -50,17 +50,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// router.get('/profile', async (req, res) => {
-//   try {
-//       const userData = await User.findByPk(req.session.user_id, {
-//           attributes: { exclude: ['password'] },
-//           include: [{ model: Content, Resource }]
-//       });
-//       res.status(200).json(userData);
-//   } catch (err) {
-//       res.status(500).json(err);
-//   }
-// });
+
 
 
 router.get('/userloggedin', async (req, res) => {

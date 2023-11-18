@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
 
@@ -20,6 +20,11 @@ const Comment = sequelize.define('Comment',
             type: DataTypes.STRING,
             allowNull: true,
             unique: false,
+        },
+        comment_date: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW,
         },
         user_id: {
             type: DataTypes.INTEGER,

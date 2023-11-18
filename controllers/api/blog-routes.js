@@ -22,7 +22,8 @@ router.post('/:id', withAuth, async (req, res) => {
         user_id,
         blog_id: req.params.id,
         user_name: dbUserData.username, //retrieves the users username from logged in user id 
-        comment: comment
+        comment: comment,
+      
         
       });
   
