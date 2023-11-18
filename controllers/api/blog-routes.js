@@ -28,6 +28,7 @@ router.post('/:id', withAuth, async (req, res) => {
       });
   
        res.redirect('/?message=comment Added!'); //when comment is added, it will show a message in url 
+       
        console.log('newComment:', newComment);
     } else {
       res.status(400).send('Comment could not be added. Please try again.');
