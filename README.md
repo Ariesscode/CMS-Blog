@@ -14,28 +14,28 @@ CMS Blog App gives users the opportunity to share blog posts with one another. E
 
 
 
-## GET STARTED 
--Set up your connection js file to connect to the MYSQL database :
-require('dotenv').config();
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.MYSQL_URL);
-module.exports = sequelize;
-**We will use dotenv to make sure our sensitive information is not in plain view**
--set up your database enviornment variables :
-MYSQL_URL =mysql://root:docker@localhost:3306/user_db
-DB_NAME =user_db
-DB_USER =root
-DB_PASSWORD =
-SESSION_SECRET = 
-**Make sure to add your password and session secret password**
--After you have created those files, install all dependencies :
-npm i
--After you have installed all dependencies:
-npm run seeds
-npm start 
-**Notification in terminal that you are listening on PORT 3001**
-Go to browser and type localhost 3001 
-**Dependencies you should have downloaded** : 
+## GET STARTED <br>
+-Set up your connection js file to connect to the MYSQL database : <br>
+require('dotenv').config();<br>
+const Sequelize = require('sequelize');<br>
+const sequelize = new Sequelize(process.env.MYSQL_URL);<br>
+module.exports = sequelize;<br>
+**We will use dotenv to make sure our sensitive information is not in plain view**<br>
+-set up your database enviornment variables :<br>
+MYSQL_URL =mysql://root:docker@localhost:3306/user_db <br>
+DB_NAME =user_db <br>
+DB_USER =root <br>
+DB_PASSWORD = <br>
+SESSION_SECRET =  <br>
+**Make sure to add your password and session secret password** <br>
+-After you have created those files, install all dependencies : <br>
+npm i <br>
+-After you have installed all dependencies: <br>
+npm run seeds <br>
+npm start <br>
+**Notification in terminal that you are listening on PORT 3001** <br>
+Go to browser and type localhost 3001 <br>
+**Dependencies you should have downloaded** : <br>
 
     "bcrypt": "^5.1.1",
     "connect-session-sequelize": "^7.1.7",
