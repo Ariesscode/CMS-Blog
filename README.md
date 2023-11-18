@@ -14,7 +14,16 @@ CMS Blog App gives users the opportunity to share blog posts with one another. E
 "email": karina127@email.com
 "password": suspenders78
 
+"email": abby@email.com
+"password": developer11ty
 
+![login form](<Assets/images/Screenshot (230).png>)
+![signup form](<Assets/images/Screenshot (231).png>)
+![Alt text](<Assets/images/Screenshot (234).png>)
+![Alt text](<Assets/images/Screenshot (229).png>)
+![Alt text](<Assets/images/Screenshot (235).png>)
+![Alt text](<Assets/images/Screenshot (238).png>)
+![Alt text](<Assets/images/Screenshot (236).png>)
 
 ## GET STARTED <br>
 -Set up your connection js file to connect to the MYSQL database : <br>
