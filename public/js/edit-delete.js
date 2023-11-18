@@ -1,4 +1,5 @@
 
+
 document.body.addEventListener('click', function (event) {
     if (event.target.matches('.deleteBtn')) {
         const postIdToDelete = event.target.dataset.postId;
@@ -6,12 +7,7 @@ document.body.addEventListener('click', function (event) {
         deletePost(postIdToDelete);
     }
 
-    // if (event.target.matches('.editBtn')) {
-    //     const postIdToEdit = event.target.dataset.postId;
-    //     editPost(postIdToEdit);
-    //     console.log('Making GET request for post with ID #:', postIdToEdit);
-
-    // }
+   
    
 });
 async function deletePost(id) {
@@ -56,6 +52,8 @@ async function editPost(postIdToEdit) {
             document.querySelector(".input-text").value = post.post_body;
 
             document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
+            document.querySelector("#create-post-button").innerText = 'Edit Post';
+
         } else {
             console.error('Failed to fetch user post for editing.');
         }
@@ -63,54 +61,9 @@ async function editPost(postIdToEdit) {
         console.error('Error fetching user post for editing:', error);
     }
 }
-document.querySelector('.editBtn').addEventListener('click', editPost);
-
-
-// async function editPost(id) {
-//     try {
-//         console.log(id);
-//         const response = await fetch(`/api/dashboard/${id}`, {
-//             method: 'GET',
-//         }); 
-
-//         if (response.ok) {
-//             const userPosts = await response.json();
-//             console.log(userPosts);
-//            return userPosts;
-           
-//         } else {
-//             console.error('Failed to fetch user posts.');
-            
-//         }
-//     } catch (error) {
-//         console.error('Error fetching user posts:', error);
-        
-//     }
-//  }
-// async function editPost(postIdToEdit) {
-    
-//     try {
-//         document.getElementById('create-post-button').innerText = 'Edit Post';
-
-
-//         const post = userPosts.findOne(post => post.id === postIdToEdit);
-//         console.log(userPosts)
-
-//         if (post) {
-//             console.log(post);
-//             document.querySelector(".title").value = post.title;
-//             document.querySelector(".text").value = post.text;
-
-//             document.querySelector("#create-post-button").setAttribute("data-edit", postIdToEdit);
-//         } else {
-//             console.error('Post not found in user\'s post history.');
-//         }
-//     } catch (error) {
-//         console.error('Error editing post:', error);
-//     }
-// }
 
 
 
 
 
+document.querySelector('.editBtn').addEventListener('click', editPost)
