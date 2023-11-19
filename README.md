@@ -47,6 +47,10 @@ SESSION_SECRET =  <br>
 -After you have created those files, install all dependencies : <br>
 npm i <br>
 -After you have installed all dependencies: <br>
+Login to database MYSQL:
+mysql - u root -p <br>
+Enter your password , then type:  source copy the relative path of SCHEMA FILE (schema.sql) <br>
+Exit, then follow steps below: <br>
 npm run seeds <br>
 npm start <br>
 **Notification in terminal that you are listening on PORT 3001** <br>
