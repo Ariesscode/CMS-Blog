@@ -25,20 +25,20 @@
       "user_name": "Abby",
       "comment": "Keep your code organized helps you understand the flow of code.",
       "user_id": 1,
-      "blog_id": 3
+      "blog_id": 2
     },
     {
       "id": 5,
       "user_name": "Karina127",
       "comment": "Can't wait to add a image to user profile. Coming soon!",
-      "user_id": 1,
-      "blog_id": 2
+      "user_id": 2,
+      "blog_id": 1
     },
     {
       "id": 6,
       "user_name": "Calebking1",
-      "comment": "Agree!",
-      "user_id": 2,
+      "comment": "Agree with this post!",
+      "user_id": 3,
       "blog_id": 3
     }
     
