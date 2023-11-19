@@ -85,40 +85,63 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.put('/:id', withAuth, async (req, res) => {   
-  try {
-    const { title, text } = req.body;
-    const postId = req.params.id;
-    console.log('Received PUT request:', postId, req.body);
+// router.put('/:id', withAuth, async (req, res) => {   
+//   try {
+//     const { title, text } = req.body;
+//     const postId = req.params.id;
+//     console.log('Received PUT request:', postId, req.body);
 
+//     const updatedPost = await Blog.update(
+//       {
+//         post_heading: title,
+//         post_body: text,
+//       },
+//       {
+//         where: {
+//           id: postId, 
+//         },
+//       }
+//     );
+    
+
+//     console.log('Updated post:', updatedPost);
+
+//     if (updatedPost[0] === 0) {
+//       return res.status(404).json({ message: 'No post found with this id!' });
+//     }
+
+//     res.redirect('/');
+
+//   } catch (error) {
+//     console.error('Error updating post:', error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// });
+
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+    const postId = req.params.id;
+    console.log("Received PUT request:", postId, req.body);
     const updatedPost = await Blog.update(
       {
-        post_heading: title,
-        post_body: text,
+        post_heading: req.body.post_heading,
+        post_body: req.body.post_body,
       },
       {
         where: {
-          id: postId, 
+          id: postId,
         },
       }
     );
-    
-
-    console.log('Updated post:', updatedPost);
-
     if (updatedPost[0] === 0) {
-      return res.status(404).json({ message: 'No post found with this id!' });
+      return res.status(404).json({ message: "No post found with this id!" });
     }
-
-    res.redirect('/');
-
+    res.render("login");
+    res.status(200).end();
   } catch (error) {
-    console.error('Error updating post:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    console.error("Error updating post:", error);
   }
 });
-
-
 
 //destroys the content in database , which causes it to not be seen in blog page anymore or post history table
 router.delete('/:id', withAuth, async (req, res) => {
