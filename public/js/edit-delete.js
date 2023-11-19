@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (event.target.matches('#create-post-button')) {
-            updatePost();
+            if(document.querySelector(".edit-create").getAttribute("method") == "PUT") {
+                updatePost();
+            }
         }
     });
 
@@ -57,7 +59,7 @@ async function editPost(postIdToEdit) {
 
             createPostButton.setAttribute("data-edit", postIdToEdit);
             createPostButton.innerText = 'Edit Post';
-            createPostForm.setAttribute("action", `/api/dashboard/${postIdToEdit}`);  //remove the method of POST TO PUT, calls put route
+            createPostForm.setAttribute("action", ``);  //remove the method of POST TO PUT, calls put route
             createPostForm.setAttribute("method", "PUT");
 
 
