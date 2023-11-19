@@ -87,7 +87,9 @@ router.post('/', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {   
   try {
-    console.log('Received PUT request:', req.params.id, req.body);
+    const { title, text } = req.body;
+    const postId = req.params.id;
+    console.log('Received PUT request:', postId, req.body);
 
     const updatedPost = await Blog.update(
       {
@@ -108,7 +110,7 @@ router.put('/:id', withAuth, async (req, res) => {
       return res.status(404).json({ message: 'No post found with this id!' });
     }
 
-    res.status(200).json({ message: 'Post updated successfully!' });
+    res.redirect('/');
 
   } catch (error) {
     console.error('Error updating post:', error);

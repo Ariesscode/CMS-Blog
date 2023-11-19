@@ -1,5 +1,6 @@
 
 const createPostButton = document.querySelector("#create-post-button");
+const createPostForm = document.querySelector(".edit-create");
 
 document.body.addEventListener('click', function (event) {
     if (event.target.matches('.deleteBtn')) {
@@ -57,7 +58,9 @@ async function editPost(postIdToEdit) {
 
             createPostButton.setAttribute("data-edit", postIdToEdit);
             createPostButton.innerText = 'Edit Post';
-            createPostButton.addEventListener('click', updatePost);
+            createPostForm.setAttribute("action", `/api/dashboard/${postIdToEdit}`);
+            createPostForm.setAttribute("method", "PUT");
+
 
         } else {
             console.error('Failed to fetch user post for editing.');
@@ -88,7 +91,7 @@ async function editPost(postIdToEdit) {
         
                 if (response.ok) {
                   console.log('Post updated successfully');
-                  res.redirect('/');
+                  res.rednder('/api/dashboard');
                 } else {
                   console.error('Error updating post:', response.status, response.statusText);
                 }
@@ -102,6 +105,7 @@ async function editPost(postIdToEdit) {
         }
     
     
+        createPostButton.addEventListener('click', updatePost);
 
 
 
