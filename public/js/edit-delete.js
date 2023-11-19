@@ -91,7 +91,7 @@ async function editPost(postIdToEdit) {
         
                 if (response.ok) {
                   console.log('Post updated successfully');
-                  res.rednder('/api/dashboard');
+                  res.redirect('/');
                 } else {
                   console.error('Error updating post:', response.status, response.statusText);
                 }

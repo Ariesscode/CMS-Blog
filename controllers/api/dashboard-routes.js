@@ -136,8 +136,7 @@ router.put("/:id", withAuth, async (req, res) => {
     if (updatedPost[0] === 0) {
       return res.status(404).json({ message: "No post found with this id!" });
     }
-    res.render("login");
-    res.status(200).end();
+    res.redirect("/");
   } catch (error) {
     console.error("Error updating post:", error);
   }
