@@ -1,22 +1,21 @@
 
-const createPostButton = document.querySelector("#create-post-button");
-const createPostForm = document.querySelector(".edit-create");
+document.addEventListener('DOMContentLoaded', function() {
 
-document.body.addEventListener('click', function (event) {
-    if (event.target.matches('.deleteBtn')) {
-        const postIdToDelete = event.target.dataset.postId;
+    document.body.addEventListener('click', function (event) {
+        if (event.target.matches('.deleteBtn')) {
+            const postIdToDelete = event.target.dataset.postId;
+            deletePost(postIdToDelete);
+        }
 
-        deletePost(postIdToDelete);
-    }
-    // if (event.target.matches('.editBtn')) {
-    //     const postIdToDelete = event.target.dataset.postId;
+        if (event.target.matches('#create-post-button')) {
+            updatePost();
+        }
+    });
 
-    //     editPost(postIdToDelete);
-    // }
-
-
+    // createPostButton.addEventListener('click', updatePost);
 });
-async function deletePost(id) {
+
+async function deletePost(id) { //calls delete method to destroy both ui and databse 
     try {
         console.log('Deleting post with id:', id);
 
@@ -26,7 +25,7 @@ async function deletePost(id) {
 
         if (response.ok) {
             console.log('Deleting post with id:', id);
-            window.location.replace('/api/dashboard');
+            window.location.replace('/'); //refresh page
 
             console.log('Post has been deleted');
 
@@ -53,12 +52,12 @@ async function editPost(postIdToEdit) {
             const post = await response.json();
             console.log(post);
 
-            document.querySelector(".input-title").value = post.post_heading;
+            document.querySelector(".input-title").value = post.post_heading;  //fill form with post content title/post body
             document.querySelector(".input-text").value = post.post_body;
 
             createPostButton.setAttribute("data-edit", postIdToEdit);
             createPostButton.innerText = 'Edit Post';
-            createPostForm.setAttribute("action", `/api/dashboard/${postIdToEdit}`);
+            createPostForm.setAttribute("action", `/api/dashboard/${postIdToEdit}`);  //remove the method of POST TO PUT, calls put route
             createPostForm.setAttribute("method", "PUT");
 
 
@@ -69,6 +68,8 @@ async function editPost(postIdToEdit) {
         console.error('Error fetching user post for editing:', error);
     }
 }
+const createPostButton = document.querySelector("#create-post-button");
+const createPostForm = document.querySelector(".edit-create");
 
     async function updatePost() {
         try {
@@ -83,30 +84,31 @@ async function editPost(postIdToEdit) {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
-                    post_heading: title,
+                    post_heading: title,  //updates database with content
                     post_body: text,
                     postId: postId,
                   }),
                 });
         
                 if (response.ok) {
-                  console.log('Post updated successfully');
-                  res.redirect('/');
-                } else {
-                  console.error('Error updating post:', response.status, response.statusText);
-                }
-              
+                    const responseData = await response.json(); // Parse JSON data
         
-            
-        } catch (error) {
-            console.error('Error updating post:', error);
-            res.status(500).json({ message: 'Internal Server Error' });
-          }
+                    // Handle the data as needed, e.g., update UI, redirect, etc.
+                    console.log('Updated post data:', responseData);
+        
+                    // Example: Redirect to the dashboard page
+                    window.location.replace('/api/dashboard'); //redirect to dashboard page after update 
+                } else {
+                    console.error('Error updating post:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Error updating post:', error);
+                // Handle error as needed
+            }
         }
     
     
-        createPostButton.addEventListener('click', updatePost);
+        // createPostButton.addEventListener('click', updatePost);
 
 
 
-// document.querySelector('.editBtn').addEventListener('click', () => editPost(postIdToEdit));

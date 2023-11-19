@@ -85,44 +85,14 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-// router.put('/:id', withAuth, async (req, res) => {   
-//   try {
-//     const { title, text } = req.body;
-//     const postId = req.params.id;
-//     console.log('Received PUT request:', postId, req.body);
 
-//     const updatedPost = await Blog.update(
-//       {
-//         post_heading: title,
-//         post_body: text,
-//       },
-//       {
-//         where: {
-//           id: postId, 
-//         },
-//       }
-//     );
-    
-
-//     console.log('Updated post:', updatedPost);
-
-//     if (updatedPost[0] === 0) {
-//       return res.status(404).json({ message: 'No post found with this id!' });
-//     }
-
-//     res.redirect('/');
-
-//   } catch (error) {
-//     console.error('Error updating post:', error);
-//     res.status(500).json({ message: 'Internal Server Error' });
-//   }
-// });
 
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const postId = req.params.id;
     console.log("Received PUT request:", postId, req.body);
-    const updatedPost = await Blog.update(
+    //Blog.update returns an array where the first element is the number of rows affected.
+    const [updatedCount] = await Blog.update(
       {
         post_heading: req.body.post_heading,
         post_body: req.body.post_body,
@@ -133,12 +103,17 @@ router.put("/:id", withAuth, async (req, res) => {
         },
       }
     );
-    if (updatedPost[0] === 0) {
+    if (updatedCount === 0) {
       return res.status(404).json({ message: "No post found with this id!" });
     }
-    res.redirect("/");
+
+    // Send a success response if the update was successful
+    return res.status(200).json({ message: "Post updated successfully" });
+    
   } catch (error) {
     console.error("Error updating post:", error);
+    // Handle other errors as needed
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
