@@ -25,8 +25,7 @@ MYSQL Version: 8.0.34<br>
 
 ![login form](<Assets/images/Screenshot (230).png>)
 ![signup form](<Assets/images/Screenshot (231).png>)
-![Alt text](<Assets/images/Screenshot (274).png>)
-![Alt text](<Assets/images/Screenshot (229).png>)
+![Alt text](<Assets/images/Screenshot (274).png>) <br>
 ![Alt text](<Assets/images/Screenshot (235).png>)
 ![Alt text](<Assets/images/Screenshot (238).png>)
 ![Alt text](<Assets/images/Screenshot (236).png>)
